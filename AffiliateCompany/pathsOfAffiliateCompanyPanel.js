@@ -63,17 +63,21 @@ export class AffiliateCompanyPanelPage {
         await input.fill(passengerCapacityInput);
     }
 
+    const
+    path = require('path');
+
     async clickToUploadAnImageOfVehicleBtn() {
-        const filePath = path.resolve("D:/Automation/Limo/Images/image 539.png");
+        const filePath = path.join(__dirname, '../Images/image 539.png');
         await this.page.setInputFiles('#file-upload-0-3', filePath);
         await this.page.waitForTimeout(3000);
     }
 
     async clickToUploadAnImageOfAffiliateCompanyProfileBtn() {
-        const filePath = path.resolve("D:/Automation/Limo/Images/images 656.png");
+        const filePath = path.join(__dirname, '../Images/images 656.png');
         await this.page.setInputFiles('input[type="file"]', filePath);
         await this.page.waitForTimeout(3000);
     }
+
 
     async clickSaveChangesBtn() {
         const btn = this.page.locator(`xpath=${this.saveChangesBtn}`);
