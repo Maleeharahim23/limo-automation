@@ -63,21 +63,17 @@ export class AffiliateCompanyPanelPage {
         await input.fill(passengerCapacityInput);
     }
 
-    const
-    path = require('path');
-
     async clickToUploadAnImageOfVehicleBtn() {
-        const filePath = path.join(__dirname, '../Images/image 539.png');
-        await this.page.setInputFiles('#file-upload-0-3', filePath);
+        const filePath = path.resolve(__dirname, "../Images/image 539.png");
+        await this.page.setInputFiles('xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[4]/div/div/div/input', filePath);
         await this.page.waitForTimeout(3000);
     }
 
     async clickToUploadAnImageOfAffiliateCompanyProfileBtn() {
-        const filePath = path.join(__dirname, '../Images/images 656.png');
-        await this.page.setInputFiles('input[type="file"]', filePath);
+        const filePath = path.resolve(__dirname, "../Images/images 656.png");
+        await this.page.setInputFiles('xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[4]/div/div[1]/input', filePath);
         await this.page.waitForTimeout(3000);
     }
-
 
     async clickSaveChangesBtn() {
         const btn = this.page.locator(`xpath=${this.saveChangesBtn}`);
