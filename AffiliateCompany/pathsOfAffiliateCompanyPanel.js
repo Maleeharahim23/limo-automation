@@ -29,6 +29,7 @@ export class AffiliateCompanyPanelPage {
 
     async clickSettingBtn() {
         const btn1 = this.page.locator(`xpath=${this.settingBtnXPath}`);
+        await btn1.waitFor({state: 'visible'});
         await btn1.click();
     }
 
