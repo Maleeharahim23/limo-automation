@@ -1,23 +1,24 @@
 class SendQuotes {
     constructor(page) {
         this.page = page;
-        this.password = "/html/body/main/div[2]/div/div/form/div[2]/div/input";
-        this.viewDetailsBtn = "/html/body/main/div[1]/div/div/div[2]/div[3]/table/tbody/tr[1]";
-        this.sendQuoteManuallyBtn = "/html/body/main/div[1]/div/div/div[3]/div/div[2]/div[2]/button";
-        this.changePriceBtn = "/html/body/main/div[1]/div/div/div[3]/div/div[3]/div[2]/div/div[3]/div[3]/div[1]/button";
-        this.mainPriceID = 'price';
-        this.noteToggleBtn = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[3]/label/div";
-        this.clientNoteInputID = "note";
-        this.addAdditionalChargesBtn = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/button";
-        this.paymentInput = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/div[2]/div[2]/input";
-        this.paymentInput2 = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/div[3]/div[2]/input";
-        this.paymentLabelInput = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/div[2]/input";
-        this.paymentLabelInput2 = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/div[3]/input";
-        this.nextButtonAfterEnteringPriceDetails = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/div[3]/button";
-        this.nextButtonAfterEnteringPriceDetails2 = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/div[4]/button";
-        this.led2tabButton = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[1]/button[2]";
-        this.searchLeadInputXPath = "/html/body/main/div[1]/div/div/div[2]/div[2]/div/div[1]/div[1]/input";
-        this.submitQuoteBtnXPath = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/button";
+        this.mainPriceID = 'price'
+        this.clientNoteInputID = "note"
+        this.noteToggleBtn = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[3]/label/div"
+        this.password = "/html/body/main/div[2]/div/div/form/div[2]/div/input"
+        this.viewDetailsBtn = "/html/body/main/div[1]/div/div/div[2]/div[3]/table/tbody/tr[1]"
+        this.sendQuoteManuallyBtn = "/html/body/main/div[1]/div/div/div[3]/div/div[2]/div[2]/button"
+        this.changePriceBtn = "/html/body/main/div[1]/div/div/div[3]/div/div[3]/div[2]/div/div[3]/div[3]/div[1]/button"
+        this.addAdditionalChargesBtn = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/button"
+        this.paymentInput = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/div[2]/div[2]/input"
+        this.paymentInput2 = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/div[3]/div[2]/input"
+        this.paymentLabelInput = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/div[2]/input"
+        this.paymentLabelInput2 = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/div[3]/input"
+        this.nextButtonAfterEnteringPriceDetails = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/div[3]/button"
+        this.nextButtonAfterEnteringPriceDetails2 = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[2]/div/form/div[4]/button"
+        this.led2tabButton = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/div[2]/div[1]/button[2]"
+        this.searchLeadInputXPath = "/html/body/main/div[1]/div/div/div[2]/div[2]/div/div[1]/div[1]/input"
+        this.submitQuoteBtnXPath = "/html/body/main/div[1]/div/div/div[3]/div[2]/div/button"
+        this.crossIconOfLeadsDetailPopupXPath = "/html/body/main/div[1]/div/div/div[3]/div/div[1]/svg"
     }
 
     async waitAndEnterLeadOrderID(inputOrderID) {
@@ -133,6 +134,11 @@ class SendQuotes {
         await toastMessage.waitFor({state: 'visible', timeout: 20000});
         const txt = (await toastMessage.textContent())?.trim();
         return txt && txt.toLowerCase().includes('price updated') && txt.toLowerCase().includes('email sent successfully');
+    }
+
+    async clickCrossIconOfLeadsDetailPopup() {
+        const btn = this.page.locator(`xpath=${this.crossIconOfLeadsDetailPopupXPath}`);
+        await btn.click();
     }
 
 }

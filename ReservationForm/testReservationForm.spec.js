@@ -1,7 +1,7 @@
 const {test, expect} = require('@playwright/test');
 const LoginHelper = require('../LoginPage/LoginHelper');
 const ReservationFormPage = require('./pathsOfReservationForm');
-const QuoteHelper = require('../SendAndUpdatingQuote/QuoteHelper');
+const QuoteHelper = require('../SendAndUpdatingQuote/QuoteHelper.spec');
 
 const BASE_URL = "https://limo-test-app-frontend.vercel.app/";
 const ADMIN_URL = "https://test-admin-panel-git-staging-clever-coders-llc.vercel.app/";
@@ -30,9 +30,10 @@ test.describe('ReservationFrom', () => {
             await generateQuote.selectPickupDate();
             await generateQuote.enterPickUpTime("18:30");
             await generateQuote.enterPickupAddress("35");
+            await generateQuote.clickStopBtn1();
+            await generateQuote.enterStopAddress1("38");
             await generateQuote.enterAirlineName("DS-34");
             await generateQuote.enterAirlineDeparturetime("19:30");
-            await generateQuote.enterExtraStops("Stop by street 4");
             await generateQuote.enterNumberOfPassengers("4");
             await generateQuote.enterPassengerNames("Alice, John, William");
             await generateQuote.enterLugage("7");
@@ -56,7 +57,6 @@ test.describe('ReservationFrom', () => {
             await page.goto(ADMIN_URL);
             const login_helper = new LoginHelper(page);
             const loginPage = await login_helper.perform_login();
-            console.log("Order id: ", order_id);
             const quote_helper = new QuoteHelper(page);
             await quote_helper.searchLead(order_id);
             const isQuoteCreated = await quote_helper.test_01_createQuoteForSingleTrips();
@@ -70,6 +70,7 @@ test.describe('ReservationFrom', () => {
             console.log("Quote is not Updated... Please try Again -", e);
             throw e;
         }
+
     });
 
     test('test_02_OneWayTripToTheAirportCreationFailed', async ({page}) => {
@@ -111,7 +112,8 @@ test.describe('ReservationFrom', () => {
             await generateQuote.enterFlightNumber("FA-67");
             await generateQuote.enterAirlineArrivalTime("10:30");
             await generateQuote.enterDropOffAddress1("34");
-            await generateQuote.enterExtraStops("Stop by street 2");
+            await generateQuote.clickStopBtn2();
+            await generateQuote.enterStopAddress2("38");
             await generateQuote.enterNumberOfPassengers("8");
             await generateQuote.enterPassengerNames("Alice, John, William, Julie");
             await generateQuote.enterLugage("7");
@@ -192,8 +194,9 @@ test.describe('ReservationFrom', () => {
             await generateQuote.selectPickupDate();
             await generateQuote.enterPickUpTime("22:30");
             await generateQuote.enterPickupAddress("34");
+            await generateQuote.clickStopBtn1();
+            await generateQuote.enterStopAddress1("38");
             await generateQuote.enterDropOffAddress2("46");
-            await generateQuote.enterExtraStops("Stop by street 2");
             await generateQuote.enterNumberOfPassengers("8");
             await generateQuote.enterPassengerNames("Alice, John, William, Julie");
             await generateQuote.enterLugage("7");
@@ -262,7 +265,6 @@ test.describe('ReservationFrom', () => {
 
     test('test_07_RoundTripInvolvingAnAirportForLeg1CreationSuccessful', async ({page}) => {
         let order_id = null;
-
         try {
             const generateQuote = new ReservationFormPage(page);
             await generateQuote.switchToReservationIframe();
@@ -275,7 +277,8 @@ test.describe('ReservationFrom', () => {
             await generateQuote.selectPickupDate();
             await generateQuote.enterPickUpTime("17:30");
             await generateQuote.enterPickupAddress("34");
-            await generateQuote.enterExtraStops("Stop by street 2");
+            await generateQuote.clickStopBtn1();
+            await generateQuote.enterStopAddress1("45");
             await generateQuote.enterNumberOfPassengers("8");
             await generateQuote.enterPassengerNames("Alice, John, William, Julie");
             await generateQuote.enterLugage("7");
@@ -286,6 +289,9 @@ test.describe('ReservationFrom', () => {
             await generateQuote.enterReturnAirlineName("Qatar Airlines");
             await generateQuote.enterReturnFlightNumber("TR-31");
             await generateQuote.selectReturnPickupAirport(2);
+            await generateQuote.clickUseSameStopsForLeg2CheckBox();
+            await generateQuote.clickStopBtn3();
+            await generateQuote.enterStopAddress3("58");
             await generateQuote.enterName("Tester");
             await generateQuote.enterEmail("maleeha.bhatti@theclevercoders.com");
             await generateQuote.enterPhoneNumber("3465727420");
@@ -315,7 +321,7 @@ test.describe('ReservationFrom', () => {
             expect(isQuoteCreated).toBeTruthy();
             console.log("\nQuote Email sent Successfully for 'Round Trip Involving an Airport'");
 
-            const isQuoteUpdated = await quote_helper.test_04_updateQuoteForRoundTrips();
+            const isQuoteUpdated = await quote_helper.test_05_updateQuoteForRoundTrips();
             expect(isQuoteUpdated).toBeTruthy();
             console.log("\nQuote Updated Successfully for 'Round Trip Involving an Airport'");
         } catch (e) {
@@ -365,17 +371,21 @@ test.describe('ReservationFrom', () => {
             await generateQuote.enterAirlineName("Turkish Airlines");
             await generateQuote.enterFlightNumber("AG-46");
             await generateQuote.enterAirlineArrivalTime("14:30");
-            await generateQuote.enterExtraStops("Stop by street 2");
             await generateQuote.enterNumberOfPassengers("8");
             await generateQuote.enterPassengerNames("Alice, John, William, Julie");
             await generateQuote.enterLugage("7");
             await generateQuote.enterDropOffAddress3("78");
+            await generateQuote.clickStopBtn4();
+            await generateQuote.enterStopAddress4("22");
             await generateQuote.selectReturnDate();
             await generateQuote.enterReturnTime("18:30");
             await generateQuote.enterReturnPickupAddress("33");
             await generateQuote.selectReturnDropOffAirport("1");
             await generateQuote.enterReturnFlightNumber("TR-31");
             await generateQuote.enterDeparturetime("21:30");
+            await generateQuote.clickUseSameStopsForLeg2CheckBox();
+            await generateQuote.clickStopBtn5();
+            await generateQuote.enterStopAddress5("42");
             await generateQuote.enterName("Tester");
             await generateQuote.enterEmail("maleeha.bhatti@theclevercoders.com");
             await generateQuote.enterPhoneNumber("3465727420");
@@ -405,7 +415,7 @@ test.describe('ReservationFrom', () => {
             expect(isQuoteCreated).toBeTruthy();
             console.log("\nQuote Email sent Successfully for 'Round Trip Involving an Airport'");
 
-            const isQuoteUpdated = await quote_helper.test_04_updateQuoteForRoundTrips();
+            const isQuoteUpdated = await quote_helper.test_05_updateQuoteForRoundTrips();
             expect(isQuoteUpdated).toBeTruthy();
             console.log("\nQuote Updated Successfully for 'Round Trip Involving an Airport'");
         } catch (e) {
@@ -454,7 +464,8 @@ test.describe('ReservationFrom', () => {
             await generateQuote.selectPickupDate();
             await generateQuote.enterPickUpTime("22:30");
             await generateQuote.enterPickupAddress("34");
-            await generateQuote.enterExtraStops("Stop by street 2");
+            await generateQuote.clickStopBtn1();
+            await generateQuote.enterStopAddress1("66");
             await generateQuote.enterNumberOfPassengers("8");
             await generateQuote.enterPassengerNames("Alice, John, William, Julie");
             await generateQuote.enterLugage("7");
@@ -462,6 +473,9 @@ test.describe('ReservationFrom', () => {
             await generateQuote.enterReturnTime("13:00");
             await generateQuote.enterReturnPickupAddress2("45");
             await generateQuote.enterReturnDropOffAddress2("46");
+            await generateQuote.clickUseSameStopsForLeg2CheckBox();
+            await generateQuote.clickStopBtn6();
+            await generateQuote.enterStopAddress6("83");
             await generateQuote.enterName("Tester");
             await generateQuote.enterEmail("maleeha.bhatti@theclevercoders.com");
             await generateQuote.enterPhoneNumber("3465727420");
@@ -469,7 +483,7 @@ test.describe('ReservationFrom', () => {
             await generateQuote.enterAdditionalNotes("Additional Notes");
             await generateQuote.clickConsentSmsCheckbox();
             await generateQuote.clickNextBtn2();
-            await generateQuote.clickGetQuoteBtn3();
+            await generateQuote.clickGetQuoteBtn4();
 
             order_id = await generateQuote.fetchOrderId();
             console.log("\n'Round Trip Not Involving an Airport' Lead is Generated Successfully");
@@ -491,7 +505,7 @@ test.describe('ReservationFrom', () => {
             expect(isQuoteCreated).toBeTruthy();
             console.log("\nQuote Email sent Successfully for 'Round Trip Not Involving an Airport'");
 
-            const isQuoteUpdated = await quote_helper.test_04_updateQuoteForRoundTrips();
+            const isQuoteUpdated = await quote_helper.test_05_updateQuoteForRoundTrips();
             expect(isQuoteUpdated).toBeTruthy();
             console.log("\nQuote Updated Successfully of 'Round Trip Not Involving an Airport'");
         } catch (e) {
@@ -500,7 +514,32 @@ test.describe('ReservationFrom', () => {
         }
     });
 
-    test('test_012_HourlyTripCreationSuccessful', async ({page}) => {
+    test('test_012_RoundTripNotInvolvingAnAirportCreationFailed', async ({page}) => {
+        try {
+            const generateQuote = new ReservationFormPage(page);
+            await generateQuote.switchToReservationIframe();
+            await generateQuote.selectServiceType(4);
+            await generateQuote.enterPickupCity("Victorville");
+            await generateQuote.selectPickupState(3);
+            await generateQuote.enterDropOffCity("Los Angeles");
+            await generateQuote.selectDropOffState(2);
+            await generateQuote.clickNextBtn1();
+            await generateQuote.clickNextBtn2();
+            await page.waitForTimeout(1000);
+            const errors = await generateQuote.checkValidationErrorsForOneWayTrips();
+
+            if (errors.length === 0) {
+                console.log("Validation errors were expected but not found.");
+            } else {
+                console.log("Due to these errors 'Round Trip Involving An Airport For Leg2' lead is not Generated.. Please Try again");
+            }
+        } catch (e) {
+            console.log("'Round Trip Involving An Airport For Leg2' Lead Creation Failed", e);
+            throw e;
+        }
+    });
+
+    test('test_013_HourlyTripCreationSuccessful', async ({page}) => {
         let order_id = null;
 
         try {
@@ -513,7 +552,7 @@ test.describe('ReservationFrom', () => {
             await generateQuote.selectPickupDate();
             await generateQuote.enterPickUpTime("22:30");
             await generateQuote.enterPickupAddress("34");
-            await generateQuote.enterExtraStops("Stop by street 2");
+            await generateQuote.enterStopAddress1("23");
             await generateQuote.enterNumberOfPassengers("8");
             await generateQuote.enterPassengerNames("Alice, John, William, Julie");
             await generateQuote.enterLugage("7");
@@ -524,7 +563,7 @@ test.describe('ReservationFrom', () => {
             await generateQuote.enterAdditionalNotes("Additional Notes");
             await generateQuote.clickConsentSmsCheckbox();
             await generateQuote.clickNextBtn2();
-            await generateQuote.clickGetQuoteBtn4();
+            await generateQuote.clickGetQuoteBtn5();
 
             order_id = await generateQuote.fetchOrderId();
             console.log("\n'Hourly Trip' Lead is Generated Successfully");
@@ -555,7 +594,7 @@ test.describe('ReservationFrom', () => {
         }
     });
 
-    test('test_013_HourlyTripCreationFailed', async ({page}) => {
+    test('test_014_HourlyTripCreationFailed', async ({page}) => {
         try {
             const generateQuote = new ReservationFormPage(page);
             await generateQuote.switchToReservationIframe();

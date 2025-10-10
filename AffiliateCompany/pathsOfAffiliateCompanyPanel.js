@@ -4,36 +4,41 @@ import path from "path";
 export class AffiliateCompanyPanelPage {
     constructor(page) {
         this.page = page;
-        this.settingBtn = '/html/body/main/div[1]/header/nav/div/div[2]/a[3]';
-        this.manageAffiliatePanelBtn = '/html/body/main/div[1]/div/div/div/div/div[10]/div/button';
-        this.addAffiliatedCompanyBtn = '/html/body/main/div[1]/div/div/div[2]/button';
-        this.companyNameXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[1]/div[1]/div/input';
-        this.phoneNumberID = 'phone';
-        this.emailInputXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[2]/div/div[2]/input';
-        this.vehicleTypeXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[2]/div/div/input';
-        this.passengerCapacityInput = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[3]/div/div/input';
-        this.saveChangesBtn = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[4]/button[2]';
-        this.viewAffiliateBtn = '/html/body/main/div[1]/div/div/div[4]/div/div[2]/button';
-        this.deleteAffiliateBtn = 'xpath=/html/body/main/div[1]/div/div/div[4]/div/div[2]/button';
-        this.phoneNumberError = 'xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[1]/div[2]/span';
-        this.emailError = 'xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[2]/span';
-        this.vehicleTypeError = 'xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[2]/div/div/div/span';
-        this.passengerCapacityError = 'xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[3]/div/div/div/span';
-        this.vehicleImageError = 'xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[4]/div/div/div/div/span';
+        this.settingBtnXPath = '/html/body/main/div[1]/header/nav/div/div[2]/a[5]'
+        this.manageAffiliatePanelBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[10]'
+        this.addAffiliatedCompanyBtnXPath = '/html/body/main/div[1]/div/div/div[2]/button'
+        this.companyNameXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[1]/div[1]/div/input'
+        this.phoneNumberID = 'phone'
+        this.emailInputXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[2]/div/div[2]/input'
+        this.vehicleTypeXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[2]/div/div/input'
+        this.passengerCapacityInputXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[3]/div/div/input'
+        this.saveChangesBtnXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[4]/button[2]'
+        this.viewAffiliateBtnXPath = '/html/body/main/div[1]/div/div/div[4]/div/div[2]/button'
+        this.deleteAffiliateBtn = '/html/body/main/div[1]/div/div/div[4]/div/div[2]/button'
+        this.phoneNumberErrorXPath = 'xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[1]/div[2]/span'
+        this.emailErrorXPath = 'xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[2]/span'
+        this.vehicleTypeErrorXPath = 'xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[2]/div/div/div/span'
+        this.passengerCapacityErrorXPath = 'xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[3]/div/div/div/span'
+        this.vehicleImageErrorXPath = 'xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[4]/div/div/div/div/span'
+        this.flatAmountPerOrderInputXpath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[3]/div[2]/div/input'
+        this.percentageOptionXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[3]/div[1]/div/label[2]/div/input'
+        this.percentageInputXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[3]/div[2]/div[2]/div/input'
+        this.perHourOptionXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[3]/div[1]/div/label[3]/div/input'
+        this.perHourInputXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[3]/div[2]/div/input'
     }
 
     async clickSettingBtn() {
-        const btn1 = this.page.locator(`xpath=${this.settingBtn}`);
+        const btn1 = this.page.locator(`xpath=${this.settingBtnXPath}`);
         await btn1.click();
     }
 
     async clickManageAffiliatePanelBtn() {
-        const btn2 = this.page.locator(`xpath=${this.manageAffiliatePanelBtn}`);
+        const btn2 = this.page.locator(`xpath=${this.manageAffiliatePanelBtnXPath}`);
         await btn2.click();
     }
 
     async clickAddAffiliateCompanyBtn() {
-        const btn = this.page.locator(`xpath=${this.addAffiliatedCompanyBtn}`);
+        const btn = this.page.locator(`xpath=${this.addAffiliatedCompanyBtnXPath}`);
         await btn.waitFor({state: 'visible'});
         await btn.click();
     }
@@ -59,7 +64,7 @@ export class AffiliateCompanyPanelPage {
     }
 
     async enterPassengerCapacityInput(passengerCapacityInput) {
-        const input = this.page.locator(`xpath=${this.passengerCapacityInput}`);
+        const input = this.page.locator(`xpath=${this.passengerCapacityInputXPath}`);
         await input.fill(passengerCapacityInput);
     }
 
@@ -76,22 +81,49 @@ export class AffiliateCompanyPanelPage {
     }
 
     async clickSaveChangesBtn() {
-        const btn = this.page.locator(`xpath=${this.saveChangesBtn}`);
+        const btn = this.page.locator(`xpath=${this.saveChangesBtnXPath}`);
         await btn.waitFor({state: 'visible'});
         await btn.click();
     }
 
     async clickViewAffiliateBtn() {
-        const btn = this.page.locator(`xpath=${this.viewAffiliateBtn}`);
+        const btn = this.page.locator(`xpath=${this.viewAffiliateBtnXPath}`);
         await btn.waitFor({state: 'visible'});
         await btn.click();
     }
 
-    async validateErrors() {
-        await expect(this.page.locator(this.phoneNumberError)).toContainText("Please enter a valid phone number");
-        await expect(this.page.locator(this.emailError)).toContainText("Please enter a valid email address");
-        await expect(this.page.locator(this.vehicleTypeError)).toContainText("Vehicle type is required");
-        await expect(this.page.locator(this.passengerCapacityError)).toContainText("Passenger capacity must be at least 1");
-        await expect(this.page.locator(this.vehicleImageError)).toContainText("Image upload is required");
+    async enterFlatAmountPerOrderInput(flatAmountPerOrderInput) {
+        const input = this.page.locator(`xpath=${this.flatAmountPerOrderInputXpath}`);
+        await input.fill(flatAmountPerOrderInput);
     }
+
+    async clickPercentageOption() {
+        const btn = this.page.locator(`xpath=${this.percentageOptionXPath}`);
+        await btn.click();
+    }
+
+    async enterPercentageInput(percentageInput) {
+        const input = this.page.locator(`xpath=${this.percentageInputXPath}`);
+        await input.fill(percentageInput);
+    }
+
+    async clickPerHourOption() {
+        const btn = this.page.locator(`xpath=${this.perHourOptionXPath}`);
+        await btn.click();
+    }
+
+    async enterPerHourInput(perHourInput) {
+        const input = this.page.locator(`xpath=${this.perHourInputXPath}`);
+        await input.fill(perHourInput);
+    }
+
+    async validateErrors() {
+        await expect(this.page.locator(this.phoneNumberErrorXPath)).toContainText("Please enter a valid phone number");
+        await expect(this.page.locator(this.emailErrorXPath)).toContainText("Please enter a valid email address");
+        await expect(this.page.locator(this.vehicleTypeErrorXPath)).toContainText("Vehicle type is required");
+        await expect(this.page.locator(this.passengerCapacityErrorXPath)).toContainText("Passenger capacity must be at least 1");
+        await expect(this.page.locator(this.vehicleImageErrorXPath)).toContainText("Image upload is required");
+    }
+
+
 }

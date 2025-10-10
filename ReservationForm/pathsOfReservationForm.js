@@ -12,7 +12,6 @@ class ReservationFormPage {
         this.airlineID = "airlineName"
         this.dropOffAirlineName = "dropoffAirline"
         this.returnAirlineName = "returnAirline"
-        this.extraStopsID = "extraStops"
         this.numberOFPassengersID = "numberOfPassengers"
         this.passengerNamesID = "passengerNames"
         this.lugageID = "lugage"
@@ -39,20 +38,35 @@ class ReservationFormPage {
         this.pickUpAirportDropdownXPath = "/html/body/main/div[2]/div[2]/form/div/div[3]/div[1]/select"
         this.pickUpAirportDropdown2XPath = "/html/body/main/div[2]/div[2]/form/div/div[2]/div[1]/select"
         this.pickUpAddressXPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[2]/div/div/div/input"
+        this.stopBtn1XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[4]/div[2]/div/button"
+        this.stopAddress1XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[4]/div[2]/div[1]/div[2]/div/div/div/input"
+        this.stopBtn2XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[7]/div[2]/div/button"
+        this.stopAddress2XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[7]/div[2]/div[1]/div[2]/div/div/div/input"
+        this.stopBtn3XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[5]/div[5]/div[2]/div[2]/div/button"
+        this.stopAddress3XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[5]/div[5]/div[2]/div[2]/div[1]/div[2]/div/div/div/input"
+        this.stopBtn4XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[4]/div[3]/div[2]/div/button"
+        this.stopAddress4XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[4]/div[3]/div[2]/div[1]/div[2]/div/div/div/input"
+        this.stopBtn5XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[5]/div[6]/div[2]/div[2]/div/button"
+        this.stopAddress5XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[5]/div[6]/div[2]/div[2]/div[1]/div[2]/div/div/div/input"
+        this.stopBtn6XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[4]/div[4]/div[2]/div[2]/div/button"
+        this.stopAddress6XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[4]/div[4]/div[2]/div[2]/div[1]/div[2]/div/div/div/input"
+        this.useSameStopsForLeg2CheckBoxID = "useSameStopsForLeg2"
         this.returnPickUpAddress = "/html/body/main/div[2]/div[2]/form/div[1]/div[5]/div[2]/div/div/div/input"
         this.returnPickUpAddress2 = "/html/body/main/div[2]/div[2]/form/div[1]/div[4]/div[2]/div/div/div/input"
         this.dropOffAddress1XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[5]/div/div/div/input"
-        this.dropOffAddress2XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[4]/div/div/div/input"
+        // this.dropOffAddress2XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[4]/div/div/div/input"
+        this.dropOffAddress2XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[5]/div/div/div/input"
         this.dropOffAddress3XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[4]/div[1]/div/div/input"
         this.returnDropOffAirport = "/html/body/main/div[2]/div[2]/form/div[1]/div[5]/div[3]/select"
         this.returnDropOffAddress2 = "/html/body/main/div[2]/div[2]/form/div[1]/div[4]/div[3]/div/div/div/input"
         this.legDropdownForRoundTripXPath = "//*[@id='myForm']/div[2]/form/div/div[2]/select"
         this.nextBtn2 = "/html/body/main/div[2]/div[2]/form/div[2]/button[2]"
-        this.getQuoteBtn1XPath = "/html/body/main/div[2]/div[2]/form/div/div[6]/div/button"
+        this.getQuoteBtn1XPath = "/html/body/main/div[2]/div[2]/form/div/div[7]/div/button"
         this.dropOffStateXPath = "/html/body/main/div[2]/div[2]/form/div/div[2]/div[2]/div[2]/select"
-        this.getQuoteBtn2XPath = "/html/body/main/div[2]/div[2]/form/div/div[5]/div/button"
-        this.getQuoteBtn3XPath = "/html/body/main/div[2]/div[2]/form/div/div[6]/div/button"
-        this.getQuoteBtn4XPath = "/html/body/main/div[2]/div[2]/form/div/div[5]/div/button"
+        this.getQuoteBtn2XPath = "/html/body/main/div[2]/div[2]/form/div/div[6]/div/button"
+        this.getQuoteBtn3XPath = "/html/body/main/div[2]/div[2]/form/div/div[8]/div/button"
+        this.getQuoteBtn4XPath = "/html/body/main/div[2]/div[2]/form/div/div[8]/div/button"
+        this.getQuoteBtn5XPath = "/html/body/main/div[2]/div[2]/form/div/div[6]/div/button"
         this.tripDurationXPath = "/html/body/main/div[2]/div[2]/form/div/div[2]/select"
     }
 
@@ -349,7 +363,7 @@ class ReservationFormPage {
     async enterDropOffAddress2(dropOffAddress2Input) {
         const input = this.frame.locator(`xpath=${this.dropOffAddress2XPath}`);
         await input.fill(dropOffAddress2Input);
-        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[4]/div/div/div[2]/div/ul/li[2]`);
+        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[5]/div/div/div[2]/div/ul/li[1]`);
         await suggestion.waitFor({state: 'visible'});
         await suggestion.click();
         await this.page.waitForTimeout(1000);
@@ -382,10 +396,100 @@ class ReservationFormPage {
         await this.page.waitForTimeout(1000);
     }
 
-    async enterExtraStops(stops) {
-        const el = this.frame.locator(`#${this.extraStopsID}`);
+    async clickStopBtn1() {
+        const el = this.frame.locator(`xpath=${this.stopBtn1XPath}`);
         await el.waitFor({state: 'visible'});
-        await el.fill(stops);
+        await el.click();
+    }
+
+    async enterStopAddress1(stopAddressInput) {
+        const el = this.frame.locator(`xpath=${this.stopAddress1XPath}`);
+        await el.waitFor({state: 'visible'});
+        await el.fill(stopAddressInput);
+        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[4]/div[2]/div[1]/div[2]/div/div/div[2]/div/ul/li[1]`);
+        await suggestion.waitFor({state: 'visible'});
+        await suggestion.click();
+    }
+
+    async clickStopBtn2() {
+        const el = this.frame.locator(`xpath=${this.stopBtn2XPath}`);
+        await el.waitFor({state: 'visible'});
+        await el.click();
+    }
+
+    async enterStopAddress2(stopAddressInput) {
+        const el = this.frame.locator(`xpath=${this.stopAddress2XPath}`);
+        await el.waitFor({state: 'visible'});
+        await el.fill(stopAddressInput);
+        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[7]/div[2]/div[1]/div[2]/div/div/div[2]/div/ul/li[1]`);
+        await suggestion.waitFor({state: 'visible'});
+        await suggestion.click();
+    }
+
+    async clickUseSameStopsForLeg2CheckBox() {
+        const el = this.frame.locator(`#${this.useSameStopsForLeg2CheckBoxID}`);
+        await el.waitFor({state: 'visible'});
+        await el.click();
+    }
+
+    async clickStopBtn3() {
+        const el = this.frame.locator(`xpath=${this.stopBtn3XPath}`);
+        await el.waitFor({state: 'visible'});
+        await el.click();
+    }
+
+    async enterStopAddress3(stopAddressInput) {
+        const el = this.frame.locator(`xpath=${this.stopAddress3XPath}`);
+        await el.waitFor({state: 'visible'});
+        await el.fill(stopAddressInput);
+        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div[1]/div[5]/div[5]/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div/ul/li[1]`);
+        await suggestion.waitFor({state: 'visible'});
+        await suggestion.click();
+    }
+
+    async clickStopBtn4() {
+        const el = this.frame.locator(`xpath=${this.stopBtn4XPath}`);
+        await el.waitFor({state: 'visible'});
+        await el.click();
+    }
+
+    async enterStopAddress4(stopAddressInput) {
+        const el = this.frame.locator(`xpath=${this.stopAddress4XPath}`);
+        await el.waitFor({state: 'visible'});
+        await el.fill(stopAddressInput);
+        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div[1]/div[4]/div[3]/div[2]/div[1]/div[2]/div/div/div[2]/div/ul/li[1]`);
+        await suggestion.waitFor({state: 'visible'});
+        await suggestion.click();
+    }
+
+    async clickStopBtn5() {
+        const el = this.frame.locator(`xpath=${this.stopBtn5XPath}`);
+        await el.waitFor({state: 'visible'});
+        await el.click();
+    }
+
+    async enterStopAddress5(stopAddressInput) {
+        const el = this.frame.locator(`xpath=${this.stopAddress5XPath}`);
+        await el.waitFor({state: 'visible'});
+        await el.fill(stopAddressInput);
+        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div[1]/div[5]/div[6]/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div/ul/li[1]`);
+        await suggestion.waitFor({state: 'visible'});
+        await suggestion.click();
+    }
+
+    async clickStopBtn6() {
+        const el = this.frame.locator(`xpath=${this.stopBtn6XPath}`);
+        await el.waitFor({state: 'visible'});
+        await el.click();
+    }
+
+    async enterStopAddress6(stopAddressInput) {
+        const el = this.frame.locator(`xpath=${this.stopAddress6XPath}`);
+        await el.waitFor({state: 'visible'});
+        await el.fill(stopAddressInput);
+        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div[1]/div[4]/div[4]/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div/ul/li[1]`);
+        await suggestion.waitFor({state: 'visible'});
+        await suggestion.click();
     }
 
     async enterAirlineName(airlineName) {
@@ -456,6 +560,12 @@ class ReservationFormPage {
 
     async clickGetQuoteBtn4() {
         const btn = this.frame.locator(`xpath=${this.getQuoteBtn4XPath}`);
+        await btn.waitFor({state: 'visible'});
+        await btn.click();
+    }
+
+    async clickGetQuoteBtn5() {
+        const btn = this.frame.locator(`xpath=${this.getQuoteBtn5XPath}`);
         await btn.waitFor({state: 'visible'});
         await btn.click();
     }
@@ -565,7 +675,6 @@ class ReservationFormPage {
 
     async checkValidationErrorsForRoundTrips() {
         try {
-            // Wait for at least one error <p> to appear
             await this.frame.locator('div[aria-live="assertive"] p.text-red-500')
                 .first()
                 .waitFor({state: 'visible', timeout: 5000});
@@ -585,6 +694,7 @@ class ReservationFormPage {
             return [];
         }
     }
+
 }
 
 module.exports = ReservationFormPage;

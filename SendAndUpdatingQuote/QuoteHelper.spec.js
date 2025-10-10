@@ -14,7 +14,7 @@ class QuoteHelper {
     async test_01_createQuoteForSingleTrips() {
         await this.sendQuote.clickSendQuoteManuallyBtn();
         await this.sendQuote.removeMainPrice();
-        await this.sendQuote.enterMainPrice("100");
+        await this.sendQuote.enterMainPrice("10");
         await this.sendQuote.clickAdditionalChargesBtn();
         await this.sendQuote.enterPayment("10");
         await this.sendQuote.enterPaymentLabel("Payment Label");
@@ -66,7 +66,23 @@ class QuoteHelper {
         return isQuoteCreated;
     }
 
-    async test_04_updateQuoteForRoundTrips() {
+    async test_04_markLeadAsPaid() {
+        await this.sendQuote.clickCrossIconOfLeadsDetailPopup();
+        // await this.sendQuote.removeMainPrice();
+        // await this.sendQuote.enterMainPrice("200");
+        // await this.sendQuote.clickAdditionalChargesBtn();
+        // await this.sendQuote.enterPayment2("20");
+        // await this.sendQuote.enterPaymentLabel2("Payment Label 2");
+        // await this.sendQuote.clickNextButtonAfterEnteringPriceDetails2();
+        // await this.sendQuote.clickNoteToggleBtn();
+        // await this.sendQuote.enterClientNoteInput("Note to Client");
+        // await this.sendQuote.clickSubmitButton();
+        // const isQuoteCreated = await this.sendQuote.checkEmailUpdateToastTextForSingleTrips();
+        // await this.page.waitForTimeout(2000);
+        // return isQuoteCreated;
+    }
+
+    async test_05_updateQuoteForRoundTrips() {
         await this.sendQuote.clickChangePriceBtn();
         await this.sendQuote.removeMainPrice();
         await this.sendQuote.enterMainPrice("100");
@@ -88,6 +104,7 @@ class QuoteHelper {
         await this.page.waitForTimeout(2000);
         return isQuoteCreated;
     }
+
 }
 
 module.exports = QuoteHelper;

@@ -17,7 +17,7 @@ test.describe('Login Tests', () => {
         await page.goto(baseURL);
     });
 
-    test("Affiliate Company is Created Successfully", async ({page}) => {
+    test('test_01_AffiliateCompanyCreatedSuccessful', async ({page}) => {
         const affiliate = new AffiliateCompanyPanelPage(page);
 
         const login_helper = new LoginHelper(page);
@@ -32,12 +32,17 @@ test.describe('Login Tests', () => {
         await affiliate.enterPassengerCapacityInput("4");
         await affiliate.clickToUploadAnImageOfVehicleBtn();
         await affiliate.clickToUploadAnImageOfAffiliateCompanyProfileBtn();
+        await affiliate.enterFlatAmountPerOrderInput("20");
+        await affiliate.clickPercentageOption();
+        await affiliate.enterPercentageInput("10");
+        await affiliate.clickPerHourOption();
+        await affiliate.enterPerHourInput("10");
         await affiliate.clickSaveChangesBtn();
         await affiliate.clickViewAffiliateBtn();
         console.log("\nAffiliate Company Added Successfully");
     });
 
-    test("Affiliate Company creation shows errors", async ({page}) => {
+    test('test_02_AffiliateCompanyCreationFailed', async ({page}) => {
         const affiliate = new AffiliateCompanyPanelPage(page);
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();

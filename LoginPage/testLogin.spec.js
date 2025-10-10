@@ -13,7 +13,6 @@ test.use({
 test.describe('Login Tests', () => {
     test.beforeEach(async ({page}) => {
         await page.goto(BASE_URL);
-        await page.setViewportSize({width: 1920, height: 1080});
     });
 
     test('test_01_signInFailed', async ({page}) => {
