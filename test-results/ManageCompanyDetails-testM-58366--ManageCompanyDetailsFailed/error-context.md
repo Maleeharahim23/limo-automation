@@ -1,0 +1,98 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - navigation [ref=e5]:
+        - generic [ref=e6]:
+          - link "LimoFlow" [ref=e8] [cursor=pointer]:
+            - /url: /company/allbookings
+            - paragraph [ref=e9] [cursor=pointer]:
+              - img [ref=e10] [cursor=pointer]
+              - text: LimoFlow
+          - generic [ref=e13]:
+            - link "Home" [ref=e14] [cursor=pointer]:
+              - /url: /company/allbookings
+              - img [ref=e15] [cursor=pointer]
+              - text: Home
+            - link "Customers" [ref=e18] [cursor=pointer]:
+              - /url: /company/customers
+              - img [ref=e19] [cursor=pointer]
+              - text: Customers
+            - link "Dispatching" [ref=e24] [cursor=pointer]:
+              - /url: /company/dispatching
+              - img [ref=e25] [cursor=pointer]
+              - text: Dispatching
+            - link "Reports" [ref=e30] [cursor=pointer]:
+              - /url: /company/reports
+              - img [ref=e31] [cursor=pointer]
+              - text: Reports
+            - link "Settings" [ref=e34] [cursor=pointer]:
+              - /url: /company/manage
+              - img [ref=e35] [cursor=pointer]
+              - text: Settings
+            - button "Logout" [ref=e39] [cursor=pointer]:
+              - img [ref=e40] [cursor=pointer]
+              - text: Logout
+      - generic [ref=e43]:
+        - generic [ref=e44]:
+          - generic [ref=e45]:
+            - img [ref=e46]
+            - generic [ref=e50]: LimoFlow Staging
+          - generic [ref=e51]: Contact Information
+        - generic [ref=e53]:
+          - generic [ref=e55]:
+            - generic [ref=e56]: Company Phone Number
+            - generic [ref=e58]:
+              - textbox "Company Phone Number" [ref=e59]: +1 (310) 424-8341
+              - 'button "United States: + 1" [ref=e61] [cursor=pointer]'
+          - generic [ref=e65]:
+            - generic [ref=e66]: Owner Phone Number
+            - generic [ref=e68]:
+              - textbox "Owner Phone Number" [ref=e69]: +1 (310) 424-8341
+              - 'button "United States: + 1" [ref=e71] [cursor=pointer]'
+          - generic [ref=e76]:
+            - paragraph [ref=e77]: "Currency:"
+            - textbox [disabled] [ref=e78]: EUR
+          - generic [ref=e81]:
+            - paragraph [ref=e82]: "Website Link:"
+            - textbox [ref=e83]: https://limo-test-app-frontend.vercel.app
+          - button "Save Changes" [ref=e84] [cursor=pointer]:
+            - img
+            - text: Save Changes
+    - generic [ref=e86] [cursor=pointer]:
+      - alert [ref=e87] [cursor=pointer]:
+        - img [ref=e89] [cursor=pointer]
+        - generic [ref=e91] [cursor=pointer]: Your information has been saved successfully.
+      - button "close" [ref=e92] [cursor=pointer]:
+        - img [ref=e93] [cursor=pointer]
+      - progressbar "notification timer" [ref=e97] [cursor=pointer]
+    - generic [ref=e100]:
+      - generic [ref=e101]:
+        - heading "Limo Service Admin Panel" [level=3] [ref=e102]
+        - paragraph [ref=e103]: Ensure top-tier comfort and style for your clients with our premium limo service management tools.
+        - generic [ref=e104]:
+          - link [ref=e105] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e106] [cursor=pointer]
+          - link [ref=e108] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e109] [cursor=pointer]
+          - link [ref=e111] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e112] [cursor=pointer]
+      - generic [ref=e115]:
+        - heading "Contact Us" [level=4] [ref=e116]
+        - paragraph [ref=e117]:
+          - generic [ref=e118]:
+            - img [ref=e119]
+            - text: "Phone:"
+            - link "877-317-8340" [ref=e123] [cursor=pointer]:
+              - /url: tel:8773178340
+    - paragraph [ref=e125]:
+      - text: "Powered By:"
+      - link "Limo Flow" [ref=e126] [cursor=pointer]:
+        - /url: https://www.limoflow.com/
+  - alert [ref=e127]
+```
