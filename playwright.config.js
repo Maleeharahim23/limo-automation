@@ -4,18 +4,17 @@ const config = {
     testDir: './',
     use: {
         headless: true,
-        browserName: 'chromium',
-        channel: 'msedge',
         viewport: { width: 1920, height: 1080 },
-        ignoreHTTPSErrors: true,
         video: 'on',
         screenshot: 'on',
-        // trace: 'retain-on-failure',
     },
-    reporter: [
-        ['list'],
-        ['html', { outputFolder: 'playwright-report' }],
+    projects: [
+        {
+            name: 'Microsoft Edge',
+            use: { channel: 'msedge' },
+        },
     ],
+    reporter: [['list'], ['html', { outputFolder: 'playwright-report' }]],
 };
 
 module.exports = config;
