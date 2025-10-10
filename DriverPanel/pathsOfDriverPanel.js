@@ -25,8 +25,8 @@ export class DriverPanelPage {
     }
 
     async clickSettingBtn() {
-        const btn1 = this.page.locator(`xpath=${this.settingBtnXPath}`);
         await btn1.waitFor({state: 'visible'});
+        const btn1 = this.page.locator(`xpath=${this.settingBtnXPath}`);
         await btn1.click();
     }
 
