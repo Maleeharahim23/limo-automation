@@ -15,6 +15,7 @@ export class ManageCompanyDetailsPanelPage {
 
     async clickSettingBtn() {
         const btn1 = this.page.locator(`xpath=${this.settingBtnXPath}`);
+        await btn1.wxaitFor({state: 'visible'});
         await btn1.click();
     }
 
