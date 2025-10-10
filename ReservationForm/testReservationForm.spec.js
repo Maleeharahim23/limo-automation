@@ -1,7 +1,7 @@
 const {test, expect} = require('@playwright/test');
 const LoginHelper = require('../LoginPage/LoginHelper');
 const ReservationFormPage = require('./pathsOfReservationForm');
-const QuoteHelper = require('../SendAndUpdatingQuote/QuoteHelper.spec');
+const QuoteHelper = require('../SendAndUpdatingQuote/QuoteHelper');
 
 const BASE_URL = "https://limo-test-app-frontend.vercel.app/";
 const ADMIN_URL = "https://test-admin-panel-git-staging-clever-coders-llc.vercel.app/";
