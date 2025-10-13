@@ -37,6 +37,7 @@ class QuoteHelper {
         await this.sendQuote.clickNextButtonAfterEnteringPriceDetails();
         await this.sendQuote.clickLeg2TabBtn();
         await this.sendQuote.removeMainPrice();
+
         await this.sendQuote.enterMainPrice("200");
         await this.sendQuote.clickAdditionalChargesBtn();
         await this.sendQuote.enterPayment("20");
