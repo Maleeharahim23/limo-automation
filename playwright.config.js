@@ -3,9 +3,15 @@ const config = {
     timeout: 120 * 1000,
     use: {
         headless: true,
-        viewport: null, // 👈 disables default viewport, allows full window size
+        viewport: { width: 1920, height: 1080 }, // ⬅️ force page viewport
         launchOptions: {
-            args: ['--start-maximized'], // 👈 maximize the browser window
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-gpu',
+                '--window-size=1920,1080', // ⬅️ enforce browser window size
+            ],
         },
         video: 'on',
         screenshot: 'on',
@@ -15,4 +21,3 @@ const config = {
 };
 
 module.exports = config;
-
