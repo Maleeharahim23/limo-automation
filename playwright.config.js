@@ -1,19 +1,19 @@
-// playwright.config.js
-/** @type {import('@playwright/test').PlaywrightTestConfig} */
-const config = {
-  timeout: 120 * 1000,
-  use: {
-      headless: true,
-      viewport: null,
-      launchOptions: { args: ['--start-maximized', '--window-size=1920,1080'] },
-    // headless:true,
-    // viewport: { width: 1280, height: 720 },
-    // actionTimeout: 30 * 1000,
-    video: 'on',
-    screenshot: 'on',
-  },
-  testDir: './',
-  reporter: [['list'], ['html', { outputFolder: 'playwright-report' }]],
-};
+import {defineConfig} from "@playwright/test";
 
-module.exports = config;
+/** @type {import('@playwright/test').PlaywrightTestConfig} */
+export default defineConfig({
+    timeout: 1000 * 120,
+    use: {
+        headless: true,
+        viewport: { width: 1280, height: 720 },
+        // viewport: null,
+        // launchOptions: {args: ['--start-maximized', '--window-size=1920,1080']},
+        // headless:true,
+        // actionTimeout: 30 * 1000,
+        video: 'on',
+        screenshot: 'on',
+    },
+    testDir: './',
+    reporter: [['list'], ['html', {outputFolder: 'playwright-report'}]],
+
+});

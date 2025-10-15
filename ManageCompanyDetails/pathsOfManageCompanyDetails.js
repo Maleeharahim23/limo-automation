@@ -55,15 +55,27 @@ export class ManageCompanyDetailsPanelPage {
     }
 
     async clearCompanyPhoneNumber() {
-        const el = this.page.locator(`[name="${this.companyPhoneNumberName}"]`);
+        await this.page.waitForTimeout(4000); // Waiting for the default value to appear
+        const el = this.page.locator(`[id="${this.companyPhoneNumberName}"]`);
         await el.waitFor({ state: 'visible' });
-        await el.fill(''); // Clears the field
+        // Focus, clear, and type manually
+        await el.click({ clickCount: 3 }); // highlight all text
+        // await el.press('Backspace');
+        // await el.pressSequentially('123456');
+        await el.fill(' ');
+        // ✅ Wait until the field truly updates
+        // const value = await el.inputValue();
+        // console.log('📞 Company phone number value: for ', this.companyPhoneNumberName, value);
     }
 
+
     async clearOwnerPhoneNumber() {
-        const el = this.page.locator(`[id="${this.ownerPhoneNumberName}"]`);
+        await this.page.waitForTimeout(4000); // Waiting for the default value to appear
+        const el = this.page.locator(`[name="${this.ownerPhoneNumberName}"]`);
         await el.waitFor({ state: 'visible' });
-        await el.fill(''); // Clears the field
+        await el.click({ clickCount: 3 }); // highlight all text
+        // await el.press('Backspace');
+        await el.fill(' ');
     }
 
     async validateErrors() {
