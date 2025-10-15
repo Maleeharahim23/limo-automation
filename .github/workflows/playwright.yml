@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Playwright Tests (Edge)
 
 on:
   push:
@@ -24,25 +24,12 @@ jobs:
       - name: 📦 Install dependencies
         run: npm ci
 
-      - name: 🎭 Install Playwright browsers
-        run: npx playwright install --with-deps
+      - name: 🎭 Install Playwright browsers (Edge)
+        run: npx playwright install --with-deps msedge
 
-      # ✅ Start a virtual display at 1920x1080 (full HD)
-      - name: 🖥️ Start virtual display
-        run: |
-          echo "Starting virtual display..."
-          export DISPLAY=:99
-          Xvfb :99 -screen 0 1920x1080x24 &
-        env:
-          DISPLAY: :99
+      - name: 🚀 Run Playwright tests in Edge (headless)
+        run: npx playwright test --browser=chromium --channel=msedge --reporter=html
 
-      # ✅ Run Playwright tests in headless mode
-      - name: 🚀 Run Playwright tests
-        env:
-          DISPLAY: :99
-        run: npx playwright test --reporter=html
-
-      # ✅ Always upload the HTML report (and videos/screenshots)
       - name: 📤 Upload Playwright report
         if: always()
         uses: actions/upload-artifact@v4

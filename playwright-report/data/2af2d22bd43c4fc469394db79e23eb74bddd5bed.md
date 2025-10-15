@@ -1,0 +1,339 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - navigation [ref=e5]:
+        - generic [ref=e6]:
+          - link "LimoFlow" [ref=e8] [cursor=pointer]:
+            - /url: /company/allbookings
+            - paragraph [ref=e9] [cursor=pointer]:
+              - img [ref=e10] [cursor=pointer]
+              - text: LimoFlow
+          - generic [ref=e13]:
+            - link "Home" [ref=e14] [cursor=pointer]:
+              - /url: /company/allbookings
+              - img [ref=e15] [cursor=pointer]
+              - text: Home
+            - link "Customers" [ref=e18] [cursor=pointer]:
+              - /url: /company/customers
+              - img [ref=e19] [cursor=pointer]
+              - text: Customers
+            - link "Dispatching" [ref=e24] [cursor=pointer]:
+              - /url: /company/dispatching
+              - img [ref=e25] [cursor=pointer]
+              - text: Dispatching
+            - link "Reports" [ref=e30] [cursor=pointer]:
+              - /url: /company/reports
+              - img [ref=e31] [cursor=pointer]
+              - text: Reports
+            - link "Settings" [ref=e34] [cursor=pointer]:
+              - /url: /company/manage
+              - img [ref=e35] [cursor=pointer]
+              - text: Settings
+            - button "Logout" [ref=e39] [cursor=pointer]:
+              - img [ref=e40] [cursor=pointer]
+              - text: Logout
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - heading "Welcome back to Leads Management" [level=1] [ref=e46]
+          - paragraph [ref=e47]: Track & manage your leads here.
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - generic [ref=e51]:
+              - button "Active Leads" [ref=e52] [cursor=pointer]
+              - button "Archived Leads" [ref=e53] [cursor=pointer]
+            - generic [ref=e54]:
+              - button "Today/Yesterday" [ref=e55] [cursor=pointer]
+              - button "This week" [ref=e56] [cursor=pointer]
+              - button "Last week" [ref=e57] [cursor=pointer]
+              - button "Last month" [ref=e58] [cursor=pointer]
+              - button "New Leads" [ref=e59] [cursor=pointer]
+          - generic [ref=e61]:
+            - generic [ref=e62]:
+              - generic [ref=e63]:
+                - img [ref=e64]
+                - textbox "Search" [ref=e67]: "2932"
+              - combobox [ref=e69] [cursor=pointer]:
+                - generic: All Status
+                - img [ref=e70] [cursor=pointer]
+            - generic [ref=e72]:
+              - generic [ref=e74] [cursor=pointer]:
+                - textbox "Date From - Date To" [ref=e75] [cursor=pointer]
+                - img [ref=e76] [cursor=pointer]
+              - button "Reset all filters" [ref=e78] [cursor=pointer]:
+                - img [ref=e79] [cursor=pointer]
+          - table [ref=e83]:
+            - rowgroup [ref=e84]:
+              - row "ID & Name Pick Up Date Status Lead Received Email Vehicle Company Invoice" [ref=e85]:
+                - cell "ID & Name" [ref=e86]:
+                  - button "ID & Name" [ref=e87] [cursor=pointer]:
+                    - generic [ref=e88] [cursor=pointer]: ID & Name
+                - cell "Pick Up Date" [ref=e89]:
+                  - button "Pick Up Date" [ref=e90] [cursor=pointer]:
+                    - generic [ref=e91] [cursor=pointer]: Pick Up Date
+                - cell "Status" [ref=e92]:
+                  - button "Status" [ref=e93] [cursor=pointer]:
+                    - generic [ref=e94] [cursor=pointer]: Status
+                - cell "Lead Received" [ref=e95]:
+                  - button "Lead Received" [ref=e96] [cursor=pointer]:
+                    - generic [ref=e97] [cursor=pointer]: Lead Received
+                - cell "Email" [ref=e98]:
+                  - button "Email" [ref=e99] [cursor=pointer]:
+                    - generic [ref=e100] [cursor=pointer]: Email
+                - cell "Vehicle" [ref=e101]:
+                  - button "Vehicle" [ref=e102] [cursor=pointer]:
+                    - generic [ref=e103] [cursor=pointer]: Vehicle
+                - cell "Company" [ref=e104]:
+                  - button "Company" [ref=e105] [cursor=pointer]:
+                    - generic [ref=e106] [cursor=pointer]: Company
+                - cell "Invoice" [ref=e107]:
+                  - button "Invoice" [ref=e108] [cursor=pointer]:
+                    - generic [ref=e109] [cursor=pointer]: Invoice
+            - rowgroup [ref=e110]:
+              - 'row "Order #2762 Celeste Vance 10/16/2025 04:24 PM 10/09/2025 03:30 PM fucep@mailinator.com LIMO LimoFlow Staging —" [ref=e111]':
+                - 'cell "Order #2762 Celeste Vance" [ref=e112] [cursor=pointer]':
+                  - generic [ref=e113] [cursor=pointer]:
+                    - generic [ref=e114] [cursor=pointer]: "Order #2762"
+                    - generic [ref=e115] [cursor=pointer]: Celeste Vance
+                - cell "10/16/2025 04:24 PM" [ref=e116] [cursor=pointer]:
+                  - text: 10/16/2025
+                  - text: 04:24 PM
+                - cell [ref=e117]:
+                  - combobox [ref=e118] [cursor=pointer]:
+                    - generic: New
+                    - img [ref=e119] [cursor=pointer]
+                - cell "10/09/2025 03:30 PM" [ref=e121] [cursor=pointer]:
+                  - generic [ref=e122] [cursor=pointer]: 10/09/2025
+                  - generic [ref=e123] [cursor=pointer]: 03:30 PM
+                - cell "fucep@mailinator.com" [ref=e124] [cursor=pointer]
+                - cell "LIMO" [ref=e125] [cursor=pointer]:
+                  - generic [ref=e126] [cursor=pointer]:
+                    - img [ref=e128] [cursor=pointer]
+                    - paragraph [ref=e131] [cursor=pointer]: LIMO
+                - cell "LimoFlow Staging" [ref=e132] [cursor=pointer]
+                - cell "—" [ref=e133]:
+                  - generic [ref=e134]: —
+              - 'row "Order #2932 Tester 10/16/2025 07:30 PM 10/15/2025 12:02 PM maleeha.bhatti@theclevercoders.com LIMO LimoFlow Staging —" [ref=e135]':
+                - 'cell "Order #2932 Tester" [ref=e136] [cursor=pointer]':
+                  - generic [ref=e137] [cursor=pointer]:
+                    - generic [ref=e138] [cursor=pointer]: "Order #2932"
+                    - generic [ref=e139] [cursor=pointer]: Tester
+                - cell "10/16/2025 07:30 PM" [ref=e140] [cursor=pointer]:
+                  - text: 10/16/2025
+                  - text: 07:30 PM
+                - cell [ref=e141]:
+                  - combobox [ref=e142] [cursor=pointer]:
+                    - generic: New
+                    - img [ref=e143] [cursor=pointer]
+                - cell "10/15/2025 12:02 PM" [ref=e145] [cursor=pointer]:
+                  - generic [ref=e146] [cursor=pointer]: 10/15/2025
+                  - generic [ref=e147] [cursor=pointer]: 12:02 PM
+                - cell "maleeha.bhatti@theclevercoders.com" [ref=e148] [cursor=pointer]
+                - cell "LIMO" [ref=e149] [cursor=pointer]:
+                  - generic [ref=e150] [cursor=pointer]:
+                    - img [ref=e152] [cursor=pointer]
+                    - paragraph [ref=e155] [cursor=pointer]: LIMO
+                - cell "LimoFlow Staging" [ref=e156] [cursor=pointer]
+                - cell "—" [ref=e157]:
+                  - generic [ref=e158]: —
+              - 'row "Celeste Vance Linked with #2762 10/17/2025 03:42 PM 10/09/2025 03:30 PM fucep@mailinator.com LIMO LimoFlow Staging —" [ref=e159]':
+                - 'cell "Celeste Vance Linked with #2762" [ref=e160] [cursor=pointer]':
+                  - generic [ref=e161] [cursor=pointer]:
+                    - generic [ref=e162] [cursor=pointer]: Celeste Vance
+                    - generic [ref=e163] [cursor=pointer]: "Linked with #2762"
+                - cell "10/17/2025 03:42 PM" [ref=e164] [cursor=pointer]:
+                  - text: 10/17/2025
+                  - text: 03:42 PM
+                - cell [ref=e165]:
+                  - combobox [ref=e166] [cursor=pointer]:
+                    - generic: New
+                    - img [ref=e167] [cursor=pointer]
+                - cell "10/09/2025 03:30 PM" [ref=e169] [cursor=pointer]:
+                  - generic [ref=e170] [cursor=pointer]: 10/09/2025
+                  - generic [ref=e171] [cursor=pointer]: 03:30 PM
+                - cell "fucep@mailinator.com" [ref=e172] [cursor=pointer]
+                - cell "LIMO" [ref=e173] [cursor=pointer]:
+                  - generic [ref=e174] [cursor=pointer]:
+                    - img [ref=e176] [cursor=pointer]
+                    - paragraph [ref=e179] [cursor=pointer]: LIMO
+                - cell "LimoFlow Staging" [ref=e180] [cursor=pointer]
+                - cell "—" [ref=e181]:
+                  - generic [ref=e182]: —
+          - generic [ref=e183]:
+            - generic [ref=e184]:
+              - button "Previous" [disabled] [ref=e185]
+              - button "Next" [disabled] [ref=e186]
+            - generic [ref=e187]: Page 1 of 1
+        - generic [ref=e188]:
+          - generic [ref=e189]:
+            - img [ref=e191] [cursor=pointer]
+            - generic [ref=e194]:
+              - generic [ref=e196]:
+                - paragraph [ref=e197]: Trip Overview
+                - paragraph [ref=e198]: View all the key details of the trip across the tabs below.
+                - paragraph [ref=e199]:
+                  - generic [ref=e200]: "Order ID: #2762"
+              - button "Send quote" [ref=e202] [cursor=pointer]:
+                - img [ref=e203] [cursor=pointer]
+                - paragraph [ref=e206] [cursor=pointer]: Send quote
+            - generic [ref=e207]:
+              - generic [ref=e208]:
+                - button "Trip Details" [ref=e209] [cursor=pointer]:
+                  - generic [ref=e210] [cursor=pointer]: Trip Details
+                - button "Lead History" [ref=e211] [cursor=pointer]:
+                  - generic [ref=e212] [cursor=pointer]: Lead History
+                - button "Customer Information" [ref=e213] [cursor=pointer]:
+                  - generic [ref=e214] [cursor=pointer]: Customer Information
+                - button "Affiliate / Driver" [ref=e215] [cursor=pointer]:
+                  - generic [ref=e216] [cursor=pointer]: Affiliate / Driver
+              - generic [ref=e218]:
+                - generic [ref=e219]:
+                  - iframe [ref=e221]:
+                    - generic [ref=f1e3]:
+                      - generic:
+                        - button "Keyboard shortcuts"
+                      - region "Map" [ref=f1e4]
+                      - generic [ref=f1e5]:
+                        - iframe [ref=f1e45]:
+                          
+                        - generic [ref=f1e51]:
+                          - generic [ref=f1e53]: 123 William St, New York, NY 10038, USA
+                          - generic [ref=f1e56]: Benazir Bhutto International Airport, J453+GG9, Airport Rd, Chaklala Cantt., Rawalpindi, 46000
+                          - link "More options" [ref=f1e57] [cursor=pointer]:
+                            - /url: https://maps.google.com/maps?ll=37.132911,-0.585872&z=2&t=m&hl=en-US&gl=US&mapclient=embed&saddr=123%20William%20St%2C%20New%20York%2C%20NY%2010038%2C%20USA&daddr=Benazir%20Bhutto%20International%20Airport%2C%20J453%2BGG9%2C%20Airport%20Rd%2C%20Chaklala%20Cantt.%2C%20Rawalpindi%2C%2046000&dirflg=d
+                        - button "Map camera controls" [ref=f1e59] [cursor=pointer]
+                        - button "Show satellite imagery" [ref=f1e62] [cursor=pointer]:
+                          - generic [ref=f1e66] [cursor=pointer]:
+                            - region [ref=f1e67]
+                            - iframe [ref=f1e73] [cursor=pointer]:
+                              
+                        - img "Google" [ref=f1e75]
+                        - generic [ref=f1e76]:
+                          - button "Keyboard shortcuts" [ref=f1e82] [cursor=pointer]
+                          - generic [ref=f1e88]: Map data ©2025
+                          - link "Terms (opens in new tab)" [ref=f1e93] [cursor=pointer]:
+                            - /url: https://www.google.com/intl/en-US_US/help/terms_maps.html
+                            - text: Terms
+                  - generic [ref=e223]:
+                    - generic [ref=e224]:
+                      - generic [ref=e226]:
+                        - paragraph [ref=e227]: "Service Type:"
+                        - paragraph [ref=e228]: Round Trip Involving an Airport
+                      - button "Edit" [ref=e230] [cursor=pointer]:
+                        - img [ref=e231] [cursor=pointer]
+                        - text: Edit
+                    - generic [ref=e233]:
+                      - generic [ref=e235]:
+                        - paragraph [ref=e236]: "Passenger Name:"
+                        - paragraph [ref=e237]: Callum Floyd
+                      - generic [ref=e239]:
+                        - paragraph [ref=e240]: "Luggage:"
+                        - paragraph [ref=e241]: "19"
+                      - generic [ref=e243]:
+                        - paragraph [ref=e244]: "Notes:"
+                        - paragraph [ref=e245]: Eiusmod et cupidatat
+                      - generic [ref=e247]:
+                        - paragraph [ref=e248]: "Email:"
+                        - paragraph [ref=e249]: fucep@mailinator.com
+                      - generic [ref=e251]:
+                        - paragraph [ref=e252]: "Phone:"
+                        - paragraph [ref=e253]:
+                          - link "(439) 472-2932" [ref=e254] [cursor=pointer]:
+                            - /url: "tel: +14394722932"
+                    - generic [ref=e255]:
+                      - generic [ref=e256] [cursor=pointer]:
+                        - img "car-front" [ref=e258] [cursor=pointer]
+                        - paragraph [ref=e259] [cursor=pointer]: LIMO
+                      - generic [ref=e260] [cursor=pointer]:
+                        - img "user" [ref=e262] [cursor=pointer]
+                        - paragraph [ref=e263] [cursor=pointer]: 3 Passengers
+                - generic [ref=e265]:
+                  - generic [ref=e266]:
+                    - button "Pickup (Leg 1)" [ref=e267] [cursor=pointer]:
+                      - generic [ref=e268] [cursor=pointer]: Pickup (Leg 1)
+                    - button "Return (Leg 2)" [ref=e269] [cursor=pointer]:
+                      - generic [ref=e270] [cursor=pointer]: Return (Leg 2)
+                  - generic [ref=e274]:
+                    - generic [ref=e275]:
+                      - generic [ref=e276]:
+                        - generic [ref=e277]: "Airline Name:"
+                        - generic [ref=e278]: Ut vero consectetur
+                        - generic [ref=e279]: "|"
+                      - button "Edit" [ref=e281] [cursor=pointer]:
+                        - img [ref=e282] [cursor=pointer]
+                        - text: Edit
+                    - generic [ref=e284]:
+                      - generic [ref=e285]:
+                        - img [ref=e287]
+                        - generic [ref=e289]:
+                          - generic [ref=e290]: Pickup
+                          - generic [ref=e291]:
+                            - paragraph [ref=e293]: 123 William Street, New York, NY
+                            - generic [ref=e294]: 10/16/2025 04:24 PM
+                      - generic [ref=e295]:
+                        - img [ref=e297]
+                        - generic [ref=e300]:
+                          - generic [ref=e301]: Dropoff
+                          - generic [ref=e302]:
+                            - paragraph [ref=e304]: GGF - GGF Regional Airport, TX
+                            - generic [ref=e305]: 02:34 AM
+          - generic [ref=e307]:
+            - generic [ref=e308]:
+              - heading "Enter Quote Price" [level=2] [ref=e309]
+              - button [ref=e310] [cursor=pointer]:
+                - img [ref=e311] [cursor=pointer]
+            - generic [ref=e314]:
+              - generic [ref=e315]:
+                - button "Pickup (Leg 1)" [ref=e316] [cursor=pointer]:
+                  - generic [ref=e317] [cursor=pointer]: Pickup (Leg 1)
+                - button "Return (Leg 2)" [active] [ref=e318] [cursor=pointer]:
+                  - generic [ref=e319] [cursor=pointer]: Return (Leg 2)
+              - generic [ref=e322]:
+                - generic [ref=e323]:
+                  - generic [ref=e324]: Main Price
+                  - spinbutton "Main Price" [ref=e325]: "0"
+                - button "Add Additional Charge" [ref=e326] [cursor=pointer]:
+                  - img [ref=e327] [cursor=pointer]
+                  - text: Add Additional Charge
+                - generic [ref=e329]:
+                  - button "Next"
+            - generic [ref=e330]:
+              - generic [ref=e331] [cursor=pointer]:
+                - checkbox "Send Note To Client" [checked] [ref=e332]
+                - generic [ref=e334] [cursor=pointer]: Send Note To Client
+              - generic [ref=e335]:
+                - generic [ref=e336]: Note to Client
+                - img [ref=e337]
+              - textbox "Note to Client" [ref=e340]
+            - button "Submit"
+            - paragraph [ref=e341]: Please enter a valid price for leg 2
+    - generic [ref=e344]:
+      - generic [ref=e345]:
+        - heading "Limo Service Admin Panel" [level=3] [ref=e346]
+        - paragraph [ref=e347]: Ensure top-tier comfort and style for your clients with our premium limo service management tools.
+        - generic [ref=e348]:
+          - link [ref=e349] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e350] [cursor=pointer]
+          - link [ref=e352] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e353] [cursor=pointer]
+          - link [ref=e355] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e356] [cursor=pointer]
+      - generic [ref=e359]:
+        - heading "Contact Us" [level=4] [ref=e360]
+        - paragraph [ref=e361]:
+          - generic [ref=e362]:
+            - img [ref=e363]
+            - text: "Phone:"
+            - link "877-317-8340" [ref=e367] [cursor=pointer]:
+              - /url: tel:8773178340
+    - paragraph [ref=e369]:
+      - text: "Powered By:"
+      - link "Limo Flow" [ref=e370] [cursor=pointer]:
+        - /url: https://www.limoflow.com/
+  - alert [ref=e371]
+```

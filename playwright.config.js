@@ -10,6 +10,8 @@ const config = {
         },
         video: 'on',
         screenshot: 'on',
+        browserName: 'chromium',
+        channel: process.env.CI ? 'msedge' : 'chrome',
     },
     reporter: [['list'], ['html', { outputFolder: 'playwright-report' }]],
 };
