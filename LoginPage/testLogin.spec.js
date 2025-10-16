@@ -3,13 +3,6 @@ const LoginHelper = require('./LoginHelper');
 
 const BASE_URL = 'https://test-admin-panel-git-staging-clever-coders-llc.vercel.app/';
 
-test.use({
-    launchOptions: {
-        args: ['--start-maximized'],
-    },
-    viewport: null,
-});
-
 test.describe('Login Tests', () => {
     test.beforeEach(async ({page}) => {
         await page.goto(BASE_URL);
