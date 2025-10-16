@@ -26,5 +26,4 @@ test.describe('Login Tests', () => {
         const login = await login_helper.perform_login('Test', 'Admin@123');
         await login.verifLoginSuccessfull();
     });
-
 });

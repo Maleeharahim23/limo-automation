@@ -103,5 +103,4 @@ export class DriverPanelPage {
         await expect(this.page.locator(this.phoneNumberErrorXPath)).toContainText("Please enter a valid phone number");
         await expect(this.page.locator(this.emailErrorXPath)).toContainText("Please enter a valid email address");
     }
-
 }

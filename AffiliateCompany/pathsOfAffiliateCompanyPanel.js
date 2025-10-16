@@ -125,6 +125,4 @@ export class AffiliateCompanyPanelPage {
         await expect(this.page.locator(this.passengerCapacityErrorXPath)).toContainText("Passenger capacity must be at least 1");
         await expect(this.page.locator(this.vehicleImageErrorXPath)).toContainText("Image upload is required");
     }
-
-
 }

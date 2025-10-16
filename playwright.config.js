@@ -6,10 +6,6 @@ export default defineConfig({
     use: {
         headless: true,
         viewport: { width: 1280, height: 720 },
-        // viewport: null,
-        // launchOptions: {args: ['--start-maximized', '--window-size=1920,1080']},
-        // headless:true,
-        // actionTimeout: 30 * 1000,
         video: 'on',
         screenshot: 'on',
     },

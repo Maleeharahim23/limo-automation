@@ -55,26 +55,19 @@ export class ManageCompanyDetailsPanelPage {
     }
 
     async clearCompanyPhoneNumber() {
-        await this.page.waitForTimeout(4000); // Waiting for the default value to appear
+        await this.page.waitForTimeout(4000);
         const el = this.page.locator(`[id="${this.companyPhoneNumberName}"]`);
         await el.waitFor({ state: 'visible' });
-        // Focus, clear, and type manually
-        await el.click({ clickCount: 3 }); // highlight all text
-        // await el.press('Backspace');
-        // await el.pressSequentially('123456');
+        await el.click({ clickCount: 3 });
         await el.fill(' ');
-        // ✅ Wait until the field truly updates
-        // const value = await el.inputValue();
-        // console.log('📞 Company phone number value: for ', this.companyPhoneNumberName, value);
     }
 
 
     async clearOwnerPhoneNumber() {
-        await this.page.waitForTimeout(4000); // Waiting for the default value to appear
+        await this.page.waitForTimeout(4000);
         const el = this.page.locator(`[name="${this.ownerPhoneNumberName}"]`);
         await el.waitFor({ state: 'visible' });
-        await el.click({ clickCount: 3 }); // highlight all text
-        // await el.press('Backspace');
+        await el.click({ clickCount: 3 });
         await el.fill(' ');
     }
 
@@ -82,5 +75,4 @@ export class ManageCompanyDetailsPanelPage {
         await expect(this.page.locator(`xpath=${this.companyPhoneNumberErrorXPath}`)).toContainText("Phone Number is required");
         await expect(this.page.locator(`xpath=${this.ownerPhoneNumberErrorXPath}`)).toContainText("Owner Phone Number is required");
     }
-
 }

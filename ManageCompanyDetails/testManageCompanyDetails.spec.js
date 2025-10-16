@@ -1,16 +1,8 @@
-// AffiliateCompany/testAffiliateCompanyPanel.spec.js
 import {test} from "@playwright/test";
 import {ManageCompanyDetailsPanelPage} from "./pathsOfManageCompanyDetails";
 import LoginHelper from "../LoginPage/LoginHelper";
 
 const baseURL = "https://test-admin-panel-git-staging-clever-coders-llc.vercel.app/";
-//
-// test.use({
-//
-// //     viewport: null,
-// // });launchOptions: {
-//         args: ['--start-maximized'],
-//     },
 
 test.describe('Login Tests', () => {
     test.beforeEach(async ({page}) => {
