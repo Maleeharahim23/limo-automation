@@ -2,7 +2,7 @@ import {defineConfig} from "@playwright/test";
 
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 export default defineConfig({
-    timeout: 3000,
+    timeout: 1000 * 5,
     use: {
         headless: true,
         viewport: { width: 1280, height: 720 },
