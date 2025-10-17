@@ -36,6 +36,4 @@ test.describe('Login Tests', () => {
         await companyPanel.validateErrors();
         console.log("\nManage Company Details data can not be added due to Errors");
     });
-
-
 });

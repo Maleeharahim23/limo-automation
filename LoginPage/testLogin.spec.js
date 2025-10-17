@@ -17,6 +17,6 @@ test.describe('Login Tests', () => {
     test('test_02_signIn', async ({page}) => {
         const login_helper = new LoginHelper(page);
         const login = await login_helper.perform_login('Test', 'Admin@123');
-        await login.verifLoginSuccessfull();
+        await login.verifyLoginSuccessfull();
     });
 });

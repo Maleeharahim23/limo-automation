@@ -38,14 +38,12 @@ class LogInPage {
         }
     }
 
-    async verifLoginSuccessfull() {
-
+    async verifyLoginSuccessfull() {
         await this.page.waitForTimeout(1000);
         const txt = await this.page.locator(`xpath=${this.loginSuccessText}`).textContent();
         if ((txt || '').includes("Login successful")) {
             console.log("Logged in Successfull");
         } else {
-            // try a dashboard text if your page shows it
             const dashboard = await this.page.locator('text=Dashboard').first().textContent().catch(() => null);
             if (dashboard && dashboard.includes('Dashboard')) {
                 console.log("Logged in Successfull (Dashboard detected)");
