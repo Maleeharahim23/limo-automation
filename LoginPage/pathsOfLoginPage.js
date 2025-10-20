@@ -29,7 +29,7 @@ class LogInPage {
         await this.page.waitForTimeout(500);
     }
 
-    async verifLoginFailed() {
+    async verifyLoginFailed() {
         const txt = await this.page.locator(`xpath=${this.loginFailedErrorText}`).textContent();
         if ((txt || '').includes("Login failed")) {
             console.log("Unable to Login...Try Again");

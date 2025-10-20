@@ -11,7 +11,7 @@ test.describe('Login Tests', () => {
     test('test_01_signInFailed', async ({page}) => {
         const login_helper = new LoginHelper(page);
         const login = await login_helper.perform_login('Tes', 'bjh');
-        await login.verifLoginFailed();
+        await login.verifyLoginFailed();
     });
 
     test('test_02_signIn', async ({page}) => {
