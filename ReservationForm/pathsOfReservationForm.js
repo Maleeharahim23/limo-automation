@@ -28,8 +28,8 @@ class ReservationFormPage {
         this.dropOffDepartureTimeID = "dropOffDepartureTime"
         this.consentSmsCheckboxID = "consent-sms"
         this.pickupStateXPath = "/html/body/main/div[2]/div[2]/form/div/div[2]/div[1]/div[2]/select"
-        this.dropOffAirportDropdownXPath = "/html/body/main/div[2]/div[2]/form/div/div[2]/div[2]/select"
-        this.dropOffAirportDropdownXPath2 = "/html/body/main/div[2]/div[2]/form/div/div[3]/div[2]/select"
+        this.dropOffAirportDropdownXPath = "/html/body/main/div[2]/div[2]/form/div/div[2]/div[3]/select"
+        this.dropOffAirportDropdownXPath2 = "/html/body/main/div[2]/div[2]/form/div/div[3]/div[3]/select"
         this.returnPickupAirport = "/html/body/main/div[2]/div[2]/form/div[1]/div[5]/div[4]/select"
         this.nextBtn1 = "/html/body/main/div[2]/div[2]/form/button"
         this.returnDateXPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[5]/div[1]/div[1]/div/div[1]/div/input"
@@ -37,7 +37,9 @@ class ReservationFormPage {
         this.serviceTypeDropdownXPath = "/html/body/main/div[2]/div[2]/form/div/div[1]/select"
         this.pickUpAirportDropdownXPath = "/html/body/main/div[2]/div[2]/form/div/div[3]/div[1]/select"
         this.pickUpAirportDropdown2XPath = "/html/body/main/div[2]/div[2]/form/div/div[2]/div[1]/select"
-        this.pickUpAddressXPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[2]/div/div/div/input"
+        this.pickUpAddressXPath = "/html/body/main/div[2]/div[2]/form/div/div[2]/div[1]/div/div/div/input"
+        this.pickUpAddress2XPath = "/html/body/main/div[2]/div[2]/form/div/div[3]/div[1]/div/div/div/input"
+        this.pickUpAddress3XPath = "/html/body/main/div[2]/div[2]/form/div/div[2]/div[2]/div/div/div[1]/input"
         this.stopBtn1XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[4]/div[2]/div/button"
         this.stopAddress1XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[4]/div[2]/div[1]/div[2]/div/div/div/input"
         this.stopBtn2XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[7]/div[2]/div/button"
@@ -57,6 +59,9 @@ class ReservationFormPage {
         // this.dropOffAddress2XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[4]/div/div/div/input"
         this.dropOffAddress2XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[5]/div/div/div/input"
         this.dropOffAddress3XPath = "/html/body/main/div[2]/div[2]/form/div[1]/div[4]/div[1]/div/div/input"
+        this.dropOffAddress4XPath = "/html/body/main/div[2]/div[2]/form/div/div[2]/div[2]/div/div/div/input"
+        this.dropOffAddress5XPath = "/html/body/main/div[2]/div[2]/form/div/div[2]/div[3]/div/div/div[1]/input"
+        this.dropOffAddress6XPath = "/html/body/main/div[2]/div[2]/form/div/div[3]/div[2]/div/div/div/input"
         this.returnDropOffAirport = "/html/body/main/div[2]/div[2]/form/div[1]/div[5]/div[3]/select"
         this.returnDropOffAddress2 = "/html/body/main/div[2]/div[2]/form/div[1]/div[4]/div[3]/div/div/div/input"
         this.legDropdownForRoundTripXPath = "//*[@id='myForm']/div[2]/form/div/div[2]/select"
@@ -67,7 +72,7 @@ class ReservationFormPage {
         this.getQuoteBtn3XPath = "/html/body/main/div[2]/div[2]/form/div/div[8]/div/button"
         this.getQuoteBtn4XPath = "/html/body/main/div[2]/div[2]/form/div/div[8]/div/button"
         this.getQuoteBtn5XPath = "/html/body/main/div[2]/div[2]/form/div/div[6]/div/button"
-        this.tripDurationXPath = "/html/body/main/div[2]/div[2]/form/div/div[2]/select"
+        this.tripDurationXPath = "/html/body/main/div[2]/div[2]/form/div/div[2]/div[1]/select"
     }
 
     async switchToReservationIframe() {
@@ -346,7 +351,25 @@ class ReservationFormPage {
         const el = this.frame.locator(`xpath=${this.pickUpAddressXPath}`);
         await el.waitFor({state: 'visible'});
         await el.fill(addr);
-        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div[1]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]`);
+        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div/div[2]/div[1]/div/div/div[2]/div/ul/li[1]`);
+        await suggestion.waitFor({state: 'visible'});
+        await suggestion.click();
+    }
+
+    async enterPickupAddress2(addr) {
+        const el = this.frame.locator(`xpath=${this.pickUpAddress2XPath}`);
+        await el.waitFor({state: 'visible'});
+        await el.fill(addr);
+        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div/div[3]/div[1]/div/div/div[2]/div/ul/li[1]`);
+        await suggestion.waitFor({state: 'visible'});
+        await suggestion.click();
+    }
+
+    async enterPickupAddress3(addr) {
+        const el = this.frame.locator(`xpath=${this.pickUpAddress3XPath}`);
+        await el.waitFor({state: 'visible'});
+        await el.fill(addr);
+        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div/div[2]/div[2]/div/div/div[2]/div/ul/li[1]`);
         await suggestion.waitFor({state: 'visible'});
         await suggestion.click();
     }
@@ -373,6 +396,33 @@ class ReservationFormPage {
         const input = this.frame.locator(`xpath=${this.dropOffAddress3XPath}`);
         await input.fill(dropOffAddress3Input);
         const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div[1]/div[4]/div[1]/div/div[2]/div/ul/li[2]`);
+        await suggestion.waitFor({state: 'visible'});
+        await suggestion.click();
+        await this.page.waitForTimeout(1000);
+    }
+
+    async enterDropOffAddress4(dropOffAddress4Input) {
+        const input = this.frame.locator(`xpath=${this.dropOffAddress4XPath}`);
+        await input.fill(dropOffAddress4Input);
+        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div/div[2]/div[2]/div/div/div[2]/div/ul/li[1]`);
+        await suggestion.waitFor({state: 'visible'});
+        await suggestion.click();
+        await this.page.waitForTimeout(1000);
+    }
+
+    async enterDropOffAddress5(dropOffAddress5Input) {
+        const input = this.frame.locator(`xpath=${this.dropOffAddress5XPath}`);
+        await input.fill(dropOffAddress5Input);
+        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div/div[2]/div[3]/div/div/div[2]/div/ul/li[1]`);
+        await suggestion.waitFor({state: 'visible'});
+        await suggestion.click();
+        await this.page.waitForTimeout(1000);
+    }
+
+    async enterDropOffAddress6(dropOffAddress6Input) {
+        const input = this.frame.locator(`xpath=${this.dropOffAddress6XPath}`);
+        await input.fill(dropOffAddress6Input);
+        const suggestion = this.frame.locator(`xpath=/html/body/main/div[2]/div[2]/form/div/div[3]/div[2]/div/div/div[2]/div/ul/li[1]`);
         await suggestion.waitFor({state: 'visible'});
         await suggestion.click();
         await this.page.waitForTimeout(1000);
