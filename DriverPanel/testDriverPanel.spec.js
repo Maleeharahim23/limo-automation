@@ -1,6 +1,7 @@
 import {test} from "@playwright/test";
 import {DriverPanelPage} from "./pathsOfDriverPanel";
 import LoginHelper from "../LoginPage/LoginHelper";
+import {AffiliateCompanyPanelPage} from "../AffiliateCompany/pathsOfAffiliateCompanyPanel";
 
 const baseURL = "https://test-admin-panel-git-staging-clever-coders-llc.vercel.app/";
 
@@ -54,4 +55,19 @@ test.describe('Driver Creation Tests', () => {
 
         console.log("\n Driver not created, validation errors shown.");
     });
+
+    test('test_03_DriverDeletion', async ({page}) => {
+        const driver = new DriverPanelPage(page);
+        const login_helper = new LoginHelper(page);
+        const loginPage = await login_helper.perform_login();
+        await driver.clickSettingBtn();
+        await driver.clickManageDriverPanelBtn();
+        await driver.enterDriverInSearchField("James");
+        await driver.clickDeleteIcon();
+        await driver.clickDeleteDriverBtn();
+
+        console.log("\n Affiliate Company Deleted Successfully");
+    });
+
 });
+

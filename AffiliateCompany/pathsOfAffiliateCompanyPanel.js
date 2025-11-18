@@ -5,7 +5,7 @@ export class AffiliateCompanyPanelPage {
     constructor(page) {
         this.page = page;
         this.settingBtnXPath = '/html/body/main/div[1]/header/nav/div/div[2]/a[5]'
-        this.manageAffiliatePanelBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[10]'
+        this.manageAffiliatePanelBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[11]/div[2]'
         this.addAffiliatedCompanyBtnXPath = '/html/body/main/div[1]/div/div/div[2]/button'
         this.companyNameXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[1]/div[1]/div/input'
         this.phoneNumberID = 'phone'
@@ -14,7 +14,6 @@ export class AffiliateCompanyPanelPage {
         this.passengerCapacityInputXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[3]/div/div/input'
         this.saveChangesBtnXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[4]/button[2]'
         this.viewAffiliateBtnXPath = '/html/body/main/div[1]/div/div/div[4]/div/div[2]/button'
-        this.deleteAffiliateBtn = '/html/body/main/div[1]/div/div/div[4]/div/div[2]/button'
         this.phoneNumberErrorXPath = 'xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[1]/div[2]/span'
         this.emailErrorXPath = 'xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[2]/span'
         this.vehicleTypeErrorXPath = 'xpath=/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[2]/div/div/div/span'
@@ -25,6 +24,8 @@ export class AffiliateCompanyPanelPage {
         this.percentageInputXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[3]/div[2]/div[2]/div/input'
         this.perHourOptionXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[3]/div[1]/div/label[3]/div/input'
         this.perHourInputXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[3]/div[2]/div/input'
+        this.searchAffiliateInputXPath = '/html/body/main/div[1]/div/div/div[2]/div/div/input'
+        this.deleteAffiliateBtnXPath = '/html/body/main/div[1]/div/div/div[4]/div/div[2]/button'
     }
 
     async clickSettingBtn() {
@@ -37,6 +38,15 @@ export class AffiliateCompanyPanelPage {
         const btn2 = this.page.locator(`xpath=${this.manageAffiliatePanelBtnXPath}`);
         await btn2.click();
     }
+
+    async clickCardByIndex(cardIndex) {
+        const card = this.page.locator('div.p-6').nth(cardIndex - 1);
+        await card.waitFor({ state: 'visible', timeout: 20000 });
+        await card.scrollIntoViewIfNeeded();
+        await card.click();
+        console.log(`Clicked on div number ${cardIndex}`);
+    }
+
 
     async clickAddAffiliateCompanyBtn() {
         const btn = this.page.locator(`xpath=${this.addAffiliatedCompanyBtnXPath}`);
@@ -125,4 +135,30 @@ export class AffiliateCompanyPanelPage {
         await expect(this.page.locator(this.passengerCapacityErrorXPath)).toContainText("Passenger capacity must be at least 1");
         await expect(this.page.locator(this.vehicleImageErrorXPath)).toContainText("Image upload is required");
     }
+
+    async enterAffiliateInSearchField(searchAffiliateInput) {
+        await this.page.waitForTimeout(6000);
+        const input = this.page.locator(`xpath=${this.searchAffiliateInputXPath}`);
+        await input.waitFor({ state: 'visible', timeout: 10000 });
+        await input.fill(searchAffiliateInput);
+        await input.press('Enter'); // 👈 Press Enter after typing
+        await this.page.waitForTimeout(1000); // Optional: short pause after search
+    }
+
+    async clickDeleteIcon() {
+        await this.page.waitForSelector('table tbody tr', { state: 'visible', timeout: 20000 });
+        const firstRow = this.page.locator('table tbody tr').first();
+        await firstRow.hover();
+        const deleteIcon = firstRow.locator('svg.lucide-trash');
+        await deleteIcon.waitFor({ state: 'attached', timeout: 10000 });
+        await deleteIcon.scrollIntoViewIfNeeded();
+        await this.page.waitForTimeout(500);
+        await deleteIcon.click();
+    }
+
+    async clickDeleteAffiliateBtn() {
+        const btn = this.page.locator(`xpath=${this.deleteAffiliateBtnXPath}`);
+        await btn.click();
+    }
+
 }

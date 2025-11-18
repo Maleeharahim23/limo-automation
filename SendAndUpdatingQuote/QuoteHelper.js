@@ -14,11 +14,12 @@ class QuoteHelper {
         await this.sendQuote.clickViewDetailsBtn();
         await this.sendQuote.clickSendQuoteManuallyBtn();
         await this.sendQuote.removeMainPrice();
-        await this.sendQuote.enterMainPrice("10");
+        await this.sendQuote.enterMainPrice("4000");
         await this.sendQuote.clickAdditionalChargesBtn();
         await this.sendQuote.enterPayment("10");
         await this.sendQuote.enterPaymentLabel("Payment Label");
         await this.sendQuote.clickNextButtonAfterEnteringPriceDetails();
+        await this.sendQuote.calculateGrandTotalAmountForOneWayTrips();
         await this.sendQuote.clickNoteToggleBtn();
         await this.sendQuote.enterClientNoteInput("Note to Client");
         await this.sendQuote.clickSubmitButton();
@@ -36,6 +37,7 @@ class QuoteHelper {
         await this.sendQuote.enterPayment("10");
         await this.sendQuote.enterPaymentLabel("Payment Label 1");
         await this.sendQuote.clickNextButtonAfterEnteringPriceDetails();
+        await this.sendQuote.calculateGrandTotalAmountForRoundTrips();
         await this.sendQuote.clickLeg2TabBtn();
         await this.sendQuote.removeMainPrice();
         await this.sendQuote.enterMainPrice("200");
@@ -43,6 +45,7 @@ class QuoteHelper {
         await this.sendQuote.enterPayment("20");
         await this.sendQuote.enterPaymentLabel("Payment Label 2");
         await this.sendQuote.clickNextButtonAfterEnteringPriceDetails();
+        await this.sendQuote.calculateGrandTotalAmountForRoundTrips();
         await this.sendQuote.clickNoteToggleBtn();
         await this.sendQuote.enterClientNoteInput("Note to Client");
         await this.sendQuote.clickSubmitButton();
@@ -59,6 +62,7 @@ class QuoteHelper {
         await this.sendQuote.enterPayment2("20");
         await this.sendQuote.enterPaymentLabel2("Payment Label 2");
         await this.sendQuote.clickNextButtonAfterEnteringPriceDetails2();
+        await this.sendQuote.calculateGrandTotalAmount2ForOneWayTrips();
         await this.sendQuote.clickNoteToggleBtn();
         await this.sendQuote.enterClientNoteInput("Note to Client");
         await this.sendQuote.clickSubmitButton();
@@ -75,6 +79,7 @@ class QuoteHelper {
         await this.sendQuote.enterPayment2("10");
         await this.sendQuote.enterPaymentLabel2("Payment Label 3");
         await this.sendQuote.clickNextButtonAfterEnteringPriceDetails2();
+        await this.sendQuote.calculateGrandTotalAmount2ForRoundTrips();
         await this.sendQuote.clickLeg2TabBtn();
         await this.sendQuote.removeMainPrice();
         await this.sendQuote.enterMainPrice("300");
@@ -82,6 +87,7 @@ class QuoteHelper {
         await this.sendQuote.enterPayment2("20");
         await this.sendQuote.enterPaymentLabel2("Payment Label 4");
         await this.sendQuote.clickNextButtonAfterEnteringPriceDetails2();
+        await this.sendQuote.calculateGrandTotalAmount2ForRoundTrips();
         await this.sendQuote.clickNoteToggleBtn();
         await this.sendQuote.enterClientNoteInput("Note to Client");
         await this.sendQuote.clickSubmitButton();

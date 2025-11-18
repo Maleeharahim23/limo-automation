@@ -19,7 +19,6 @@ test.describe('Manage Company Details Tests', () => {
 
     test('test_01_ManageCompanyDetailsAddedSuccessfully', async ({page}) => {
         const companyPanel = new ManageCompanyDetailsPanelPage(page);
-
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await companyPanel.clickSettingBtn();

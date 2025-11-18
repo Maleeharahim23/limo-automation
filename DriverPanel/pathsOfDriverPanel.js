@@ -22,6 +22,8 @@ export class DriverPanelPage {
         this.percentageInputXPath = '/html/body/main/div[1]/div/div/div[4]/div/div[3]/div[2]/div[2]/div/input'
         this.perHourOptionXPath = '/html/body/main/div[1]/div/div/div[4]/div/div[3]/div[1]/div/label[3]/div/input'
         this.perHourInputXPath = '/html/body/main/div[1]/div/div/div[4]/div/div[3]/div[2]/div/input'
+        this.searchDriverInputXPath = '/html/body/main/div[1]/div/div/div[2]/div/div/input'
+        this.deleteDriverBtnXPath = '/html/body/main/div[1]/div/div/div[4]/div/div[2]/button'
     }
 
     async clickSettingBtn() {
@@ -103,4 +105,30 @@ export class DriverPanelPage {
         await expect(this.page.locator(this.phoneNumberErrorXPath)).toContainText("Please enter a valid phone number");
         await expect(this.page.locator(this.emailErrorXPath)).toContainText("Please enter a valid email address");
     }
+
+    async enterDriverInSearchField(searchDriverInput) {
+        await this.page.waitForTimeout(6000);
+        const input = this.page.locator(`xpath=${this.searchDriverInputXPath}`);
+        await input.waitFor({ state: 'visible', timeout: 10000 });
+        await input.fill(searchDriverInput);
+        await input.press('Enter'); // 👈 Press Enter after typing
+        await this.page.waitForTimeout(1000); // Optional: short pause after search
+    }
+
+    async clickDeleteIcon() {
+        await this.page.waitForSelector('table tbody tr', { state: 'visible', timeout: 20000 });
+        const firstRow = this.page.locator('table tbody tr').first();
+        await firstRow.hover();
+        const deleteIcon = firstRow.locator('svg.lucide-trash');
+        await deleteIcon.waitFor({ state: 'attached', timeout: 10000 });
+        await deleteIcon.scrollIntoViewIfNeeded();
+        await this.page.waitForTimeout(500);
+        await deleteIcon.click();
+    }
+
+    async clickDeleteDriverBtn() {
+        const btn = this.page.locator(`xpath=${this.deleteDriverBtnXPath}`);
+        await btn.click();
+    }
+
 }

@@ -2,9 +2,13 @@ const {test, expect} = require('@playwright/test')
 const LoginHelper = require('../LoginPage/LoginHelper')
 const ReservationFormPage = require('./pathsOfReservationForm')
 const QuoteHelper = require('../SendAndUpdatingQuote/QuoteHelper')
+const DriverDispatch = require('../Dispatching/testDispatch')
+const RefundLeads = require('../RefundAmount/testRefund')
 
-const BASE_URL = "https://limo-test-app-frontend.vercel.app/"
-const ADMIN_URL = "https://test-admin-panel-git-staging-clever-coders-llc.vercel.app/"
+// const BASE_URL = "https://limo-test-app-frontend.vercel.app/" //Old Production Link
+const BASE_URL = "https://main-reservation-form.vercel.app/" //New Production Link
+const ADMIN_URL = "https://test-admin-panel-git-staging-clever-coders-llc.vercel.app/" //Admin Panel
+// const ADMIN_URL = "https://production-admin-panel-two.vercel.app/" //Production Link
 
 // test.use({
 //     headless: false,
@@ -14,7 +18,7 @@ const ADMIN_URL = "https://test-admin-panel-git-staging-clever-coders-llc.vercel
 //     },
 // });
 
-test.describe('ReservationFrom', () => {
+test.describe('Reservation From', () => {
     test.beforeEach(async ({page}) => {
         await page.goto(BASE_URL)
     })
@@ -23,7 +27,7 @@ test.describe('ReservationFrom', () => {
         let order_id = null
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.enterPickupAddress("36")
             await generateQuote.enterPickupCity("Los Angeles")
             await generateQuote.selectDropoffAirport()
@@ -50,29 +54,49 @@ test.describe('ReservationFrom', () => {
             order_id = await generateQuote.fetchOrderId()
             console.log("Order id: ", order_id)
         } catch (e) {
-            console.log("One Way Trip To The Airport Lead is not generated...Please try Again -", e)
+            console.log("'One Way Trip To The Airport' Lead is not generated...Please try Again -", e)
             throw e
         }
 
         try {
             await page.goto(ADMIN_URL)
             const login_helper = new LoginHelper(page)
-            const loginPage = await login_helper.perform_login()
             const quote_helper = new QuoteHelper(page)
+            const test_Dispatch = new DriverDispatch(page)
+            const test_Refund = new RefundLeads(page)
+
+            const loginPage = await login_helper.perform_login()
             await quote_helper.searchLead(order_id)
+
             const isQuoteCreated = await quote_helper.test_01_createQuoteForSingleTrips()
             expect(isQuoteCreated).toBeTruthy()
-            console.log("\nQuote Email sent Successfully for One Way Trip To The Airport")
+            console.log("\nQuote Email sent Successfully for 'One Way Trip To The Airport'")
 
             const isQuoteUpdated = await quote_helper.test_03_updateQuoteForSingleTrips()
             expect(isQuoteUpdated).toBeTruthy()
-            console.log("\nQuote Updated Successfully for One Way Trip To The Airport")
+            console.log("\nQuote Updated Successfully for 'One Way Trip To The Airport'")
 
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
-            console.log("\nOne Way Trip To The Airport Lead Marked as Paid Successfully")
+            console.log("\n'One Way Trip To The Airport' Lead Marked as Paid Successfully")
+
+            const isRefundFailed = await test_Refund.test_02_AmountRefundForOneWayTripLeadFailed()
+            expect(isRefundFailed).toBeTruthy()
+            console.log("\n'One Way Trip To The Airport' Lead Refund Failed")
+
+            const isRefundSuccessful = await test_Refund.test_01_AmountRefundForOneWayTripLeadSuccessfully()
+            expect(isRefundSuccessful).toBeTruthy()
+            console.log("\n'One Way Trip To The Airport' Lead Refund Successfully")
+
+            const isAssigningFailed = await test_Dispatch.test_02_DriverAssigningFailedForOneWayTrip(order_id)
+            expect(isAssigningFailed).toBeTruthy()
+            console.log("\nDriver is not Assigned to 'One Way Trip to the Airport'")
+
+            const isAssigningSuccessful = await test_Dispatch.test_01_DriverAssignedToOneWayTripLeadSuccessfully(order_id)
+            expect(isAssigningSuccessful).toBeTruthy()
+            console.log("\nDriver Assigned to the 'One Way Trip to the Airport' Successfully")
         } catch (e) {
-            console.log("Quote is not Priced, Updated or Paid... Please try Again -", e)
+            console.log("Quote is not Sent/ Updated/ Paid/ Refunded/ Driver Dispatched... Please try Again -", e)
             throw e
         }
 
@@ -81,7 +105,7 @@ test.describe('ReservationFrom', () => {
     test('test_02_OneWayTripToTheAirportCreationFailed', async ({page}) => {
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.enterPickupAddress("34")
             await generateQuote.enterPickupCity("Los Angeles")
             await generateQuote.selectDropoffAirport()
@@ -106,7 +130,7 @@ test.describe('ReservationFrom', () => {
 
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.selectServiceType(1)
             await generateQuote.selectPickUpAirportDropdown2(1)
             await generateQuote.enterDropOffAddress4("56")
@@ -136,7 +160,7 @@ test.describe('ReservationFrom', () => {
             order_id = await generateQuote.fetchOrderId()
             console.log("\n'One Way Trip From The Airport' Quote is Generated Successfully")
         } catch (e) {
-            console.log("One Way Trip From The Airport Lead is not generated...Please try Again -", e)
+            console.log("'One Way Trip From The Airport' Lead is not generated...Please try Again -", e)
             throw e
         }
 
@@ -145,23 +169,40 @@ test.describe('ReservationFrom', () => {
             const login_helper = new LoginHelper(page)
             await login_helper.perform_login()
             console.log("Order id: ", order_id)
-
             const quote_helper = new QuoteHelper(page)
+            const test_Dispatch = new DriverDispatch(page)
+            const test_Refund = new RefundLeads(page)
             await quote_helper.searchLead(order_id)
 
             const isQuoteCreated = await quote_helper.test_01_createQuoteForSingleTrips()
             expect(isQuoteCreated).toBeTruthy()
-            console.log("\nQuote Email sent Successfully for One Way Trip From The Airport")
+            console.log("\nQuote Email sent Successfully for 'One Way Trip From The Airport'")
 
             const isQuoteUpdated = await quote_helper.test_03_updateQuoteForSingleTrips()
             expect(isQuoteUpdated).toBeTruthy()
-            console.log("\nQuote Updated Successfully for One Way Trip From The Airport")
+            console.log("\nQuote Updated Successfully for 'One Way Trip From The Airport'")
 
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
-            console.log("\nOne Way Trip From The Airport Lead Marked as Paid Successfully")
+            console.log("\n'One Way Trip From The Airport' Lead Marked as Paid Successfully")
+
+            const isRefundFailed = await test_Refund.test_02_AmountRefundForOneWayTripLeadFailed()
+            expect(isRefundFailed).toBeTruthy()
+            console.log("\n'One Way Trip To The Airport' Lead Refund Failed")
+
+            const isRefundSuccessful = await test_Refund.test_01_AmountRefundForOneWayTripLeadSuccessfully()
+            expect(isRefundSuccessful).toBeTruthy()
+            console.log("\n'One Way Trip To The Airport' Lead Refund Successfully")
+
+            const isAssigningFailed = await test_Dispatch.test_02_DriverAssigningFailedForOneWayTrip(order_id)
+            expect(isAssigningFailed).toBeTruthy()
+            console.log("\nDriver is not Assigned to 'One Way Trip from the Airport'")
+
+            const isAssigningSuccessful = await test_Dispatch.test_01_DriverAssignedToOneWayTripLeadSuccessfully(order_id)
+            expect(isAssigningSuccessful).toBeTruthy()
+            console.log("\nDriver Assigned to the 'One Way Trip from the Airport' Successfully")
         } catch (e) {
-            console.log("Quote is not sent... Please try Again -", e)
+            console.log("Quote is not Sent/ Updated/ Paid/ Refunded/ Driver Dispatched... Please try Again -", e)
             throw e
         }
     })
@@ -169,7 +210,7 @@ test.describe('ReservationFrom', () => {
     test('test_04_OneWayTripFromTheAirportCreationFailed', async ({page}) => {
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.selectServiceType(1)
             await generateQuote.selectPickUpAirportDropdown2(1)
             await generateQuote.enterDropOffAddress4("56")
@@ -195,7 +236,7 @@ test.describe('ReservationFrom', () => {
 
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.selectServiceType(3)
             await generateQuote.enterPickupAddress("38")
             // await generateQuote.enterPickupCity("Victorville")
@@ -225,7 +266,7 @@ test.describe('ReservationFrom', () => {
             order_id = await generateQuote.fetchOrderId()
             console.log("\n'One Way Trip Not Involving an Airport' Quote is Generated Successfully")
         } catch (e) {
-            console.log("One Way Trip Not Involving an Airport Lead is not generated...Please try Again -", e)
+            console.log("'One Way Trip Not Involving an Airport' Lead is not generated...Please try Again -", e)
             throw e
         }
 
@@ -234,23 +275,41 @@ test.describe('ReservationFrom', () => {
             const login_helper = new LoginHelper(page)
             await login_helper.perform_login()
             console.log("Order id: ", order_id)
-
             const quote_helper = new QuoteHelper(page)
+            const test_Dispatch = new DriverDispatch(page)
+            const test_Refund = new RefundLeads(page)
             await quote_helper.searchLead(order_id)
 
             const isQuoteCreated = await quote_helper.test_01_createQuoteForSingleTrips()
             expect(isQuoteCreated).toBeTruthy()
-            console.log("\nQuote Email sent Successfully for One Way Trip Not Involving an Airport")
+            console.log("\nQuote Email sent Successfully for 'One Way Trip Not Involving an Airport'")
 
             const isQuoteUpdated = await quote_helper.test_03_updateQuoteForSingleTrips()
             expect(isQuoteUpdated).toBeTruthy()
-            console.log("\nQuote Updated Successfully for One Way Trip Not Involving an Airport")
+            console.log("\nQuote Updated Successfully for 'One Way Trip Not Involving an Airport'")
 
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
-            console.log("\nOne Way Trip Not Involving an Airport Lead Marked as Paid Successfully")
+            console.log("\n'One Way Trip Not Involving an Airport' Lead Marked as Paid Successfully")
+
+            const isRefundFailed = await test_Refund.test_02_AmountRefundForOneWayTripLeadFailed()
+            expect(isRefundFailed).toBeTruthy()
+            console.log("\n'One Way Trip Not Involving an Airport' Lead Refund Failed")
+
+            const isRefundSuccessful = await test_Refund.test_01_AmountRefundForOneWayTripLeadSuccessfully()
+            expect(isRefundSuccessful).toBeTruthy()
+            console.log("\n'One Way Trip Not Involving an Airport' Lead Refund Successfully")
+
+            const isAssigningFailed = await test_Dispatch.test_02_DriverAssigningFailedForOneWayTrip(order_id)
+            expect(isAssigningFailed).toBeTruthy()
+            console.log("\nDriver is not Assigned to 'One Way Trip Not Involving an Airport'")
+
+            const isAssigningSuccessful = await test_Dispatch.test_01_DriverAssignedToOneWayTripLeadSuccessfully(order_id)
+            expect(isAssigningSuccessful).toBeTruthy()
+            console.log("\nDriver Assigned to the 'One Way Trip Not Involving an Airport' Successfully")
+
         } catch (e) {
-            console.log("Quote is not Sent/ Updated... Please try Again -", e)
+            console.log("Quote is not Sent/ Updated/ Paid/ Refunded/ Driver Dispatched... Please try Again -", e)
             throw e
         }
     })
@@ -258,7 +317,7 @@ test.describe('ReservationFrom', () => {
     test('test_06_OneWayTripNotInvolvingAnAirportCreationFailed', async ({page}) => {
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.selectServiceType(3)
             await generateQuote.enterPickupAddress("38")
             // await generateQuote.enterPickupCity("Victorville")
@@ -284,7 +343,7 @@ test.describe('ReservationFrom', () => {
         let order_id = null
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.selectServiceType(2)
             await generateQuote.selectLeg1ForRoundTrip(0)
             await generateQuote.enterPickupAddress2("47")
@@ -330,8 +389,9 @@ test.describe('ReservationFrom', () => {
             const login_helper = new LoginHelper(page)
             await login_helper.perform_login()
             console.log("Order id: ", order_id)
-
             const quote_helper = new QuoteHelper(page)
+            const test_Dispatch = new DriverDispatch(page)
+            const test_Refund = new RefundLeads(page)
             await quote_helper.searchLead(order_id)
 
             const isQuoteCreated = await quote_helper.test_02_createQuoteForRoundTrips()
@@ -345,8 +405,25 @@ test.describe('ReservationFrom', () => {
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
             console.log("\n'Round Trip Involving an Airport for Leg 1' Lead Marked as Paid Successfully")
+
+            const isRefundFailed = await test_Refund.test_04_AmountRefundForRoundTripLeadFailed()
+            expect(isRefundFailed).toBeTruthy()
+            console.log("\n'Round Trip Involving an Airport for Leg 1 and Leg 2' Lead Refund Failed")
+
+            const isRefundSuccessful = await test_Refund.test_03_AmountRefundForRoundTripLeadSuccessfully()
+            expect(isRefundSuccessful).toBeTruthy()
+            console.log("\n'Round Trip Involving an Airport for Leg 1 and Leg 2' Lead Refund Successfully")
+
+            const isAssigningFailed = await test_Dispatch.test_04_DriverAssigningFailedForRoundTrips(order_id)
+            expect(isAssigningFailed).toBeTruthy()
+            console.log("\nDriver is not Assigned to 'Round Trip Involving an Airport for Leg 1'")
+
+            const isAssigningSuccessful = await test_Dispatch.test_03_DriverAssignedToRoundWayTripLeadSuccessfully(order_id)
+            expect(isAssigningSuccessful).toBeTruthy()
+            console.log("\nDriver Assigned to the 'Round Trip Involving an Airport for Leg 1' Successfully")
+
         } catch (e) {
-            console.log("Quote is not Sent/ Updated... Please try Again -", e)
+            console.log("Quote is not Sent/ Updated/ Paid/ Refunded/ Driver Dispatched... Please try Again -", e)
             throw e
         }
     })
@@ -354,7 +431,7 @@ test.describe('ReservationFrom', () => {
     test('test_08_RoundTripInvolvingAnAirportForLeg1CreationFailed', async ({page}) => {
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.selectServiceType(2)
             await generateQuote.selectLeg1ForRoundTrip(0)
             await generateQuote.enterPickupAddress2("47")
@@ -380,7 +457,7 @@ test.describe('ReservationFrom', () => {
 
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.selectServiceType(2)
             await generateQuote.selectLeg2ForRoundTrip(1)
             await generateQuote.selectPickUpAirportDropdown(1)
@@ -428,8 +505,9 @@ test.describe('ReservationFrom', () => {
             const login_helper = new LoginHelper(page)
             await login_helper.perform_login()
             console.log("Order id: ", order_id)
-
             const quote_helper = new QuoteHelper(page)
+            const test_Dispatch = new DriverDispatch(page)
+            const test_Refund = new RefundLeads(page)
             await quote_helper.searchLead(order_id)
 
             const isQuoteCreated = await quote_helper.test_02_createQuoteForRoundTrips()
@@ -443,8 +521,25 @@ test.describe('ReservationFrom', () => {
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
             console.log("\n'Round Trip Involving an Airport for Leg 2' Lead Marked as Paid Successfully")
+
+            const isRefundFailed = await test_Refund.test_04_AmountRefundForRoundTripLeadFailed()
+            expect(isRefundFailed).toBeTruthy()
+            console.log("\n'Round Trip Involving an Airport for Leg 1 and Leg 2' Lead Refund Failed")
+
+            const isRefundSuccessful = await test_Refund.test_03_AmountRefundForRoundTripLeadSuccessfully()
+            expect(isRefundSuccessful).toBeTruthy()
+            console.log("\n'Round Trip Involving an Airport for Leg 1 and Leg 2' Lead Refund Successfully")
+
+            const isAssigningFailed = await test_Dispatch.test_04_DriverAssigningFailedForRoundTrips(order_id)
+            expect(isAssigningFailed).toBeTruthy()
+            console.log("\nDriver is not Assigned to 'Round Trip Involving an Airport for Leg 2'")
+
+            const isAssigningSuccessful = await test_Dispatch.test_03_DriverAssignedToRoundWayTripLeadSuccessfully(order_id)
+            expect(isAssigningSuccessful).toBeTruthy()
+            console.log("\nDriver Assigned to the 'Round Trip Involving an Airport for Leg 2' Successfully")
+
         } catch (e) {
-            console.log("Quote is not Sent/ Updated... Please try Again -", e)
+            console.log("Quote is not Sent/ Updated/ Paid/ Refunded/ Driver Dispatched... Please try Again -", e)
             throw e
         }
     })
@@ -452,7 +547,7 @@ test.describe('ReservationFrom', () => {
     test('test_010_RoundTripInvolvingAnAirportForLeg2CreationFailed', async ({page}) => {
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.selectServiceType(2)
             await generateQuote.selectLeg2ForRoundTrip(1)
             await generateQuote.selectPickUpAirportDropdown(1)
@@ -478,7 +573,7 @@ test.describe('ReservationFrom', () => {
 
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.selectServiceType(4)
             await generateQuote.enterPickupAddress("67")
             await generateQuote.enterDropOffAddress5("28")
@@ -519,8 +614,9 @@ test.describe('ReservationFrom', () => {
             const login_helper = new LoginHelper(page)
             await login_helper.perform_login()
             console.log("Order id: ", order_id)
-
             const quote_helper = new QuoteHelper(page)
+            const test_Dispatch = new DriverDispatch(page)
+            const test_Refund = new RefundLeads(page)
             await quote_helper.searchLead(order_id)
 
             const isQuoteCreated = await quote_helper.test_02_createQuoteForRoundTrips()
@@ -534,8 +630,24 @@ test.describe('ReservationFrom', () => {
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
             console.log("\n'Round Trip Not Involving an Airport' Lead Marked as Paid Successfully")
+
+            const isRefundFailed = await test_Refund.test_04_AmountRefundForRoundTripLeadFailed()
+            expect(isRefundFailed).toBeTruthy()
+            console.log("\n'Round Trip Not Involving an Airport for Leg 1 and Leg 2' Lead Refund Failed")
+
+            const isRefundSuccessful = await test_Refund.test_03_AmountRefundForRoundTripLeadSuccessfully()
+            expect(isRefundSuccessful).toBeTruthy()
+            console.log("\n'Round Trip Not Involving an Airport for Leg 1 and Leg 2' Lead Refund Successfully")
+
+            const isAssigningFailed = await test_Dispatch.test_04_DriverAssigningFailedForRoundTrips(order_id)
+            expect(isAssigningFailed).toBeTruthy()
+            console.log("\nDriver is not Assigned to 'Round Trip Not Involving an Airport'")
+
+            const isAssigningSuccessful = await test_Dispatch.test_03_DriverAssignedToRoundWayTripLeadSuccessfully(order_id)
+            expect(isAssigningSuccessful).toBeTruthy()
+            console.log("\nDriver Assigned to the 'Round Trip Not Involving an Airport' Successfully")
         } catch (e) {
-            console.log("Quote is not Sent/ Updated for 'Round Trip Not Involving an Airport'... Please try Again -", e)
+            console.log("Quote is not Sent/ Updated/ Paid/ Refunded/ Driver Dispatched for 'Round Trip Not Involving an Airport'... Please try Again -", e)
             throw e
         }
     })
@@ -543,7 +655,7 @@ test.describe('ReservationFrom', () => {
     test('test_012_RoundTripNotInvolvingAnAirportCreationFailed', async ({page}) => {
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.selectServiceType(4)
             await generateQuote.enterPickupAddress("67")
             await generateQuote.enterDropOffAddress5("28")
@@ -568,7 +680,7 @@ test.describe('ReservationFrom', () => {
 
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.selectServiceType(5)
             await generateQuote.selectTripDuration(8)
             await generateQuote.enterPickupAddress3("45")
@@ -601,8 +713,9 @@ test.describe('ReservationFrom', () => {
             const login_helper = new LoginHelper(page)
             await login_helper.perform_login()
             console.log("Order id: ", order_id)
-
             const quote_helper = new QuoteHelper(page)
+            const test_Dispatch = new DriverDispatch(page)
+            const test_Refund = new RefundLeads(page)
             await quote_helper.searchLead(order_id)
 
             const isQuoteCreated = await quote_helper.test_01_createQuoteForSingleTrips()
@@ -616,8 +729,24 @@ test.describe('ReservationFrom', () => {
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
             console.log("\n'Hourly Trip' Lead Marked as Paid Successfully")
+
+            const isRefundFailed = await test_Refund.test_02_AmountRefundForOneWayTripLeadFailed()
+            expect(isRefundFailed).toBeTruthy()
+            console.log("\n'Hourly Trip' Lead Refund Failed")
+
+            const isRefundSuccessful = await test_Refund.test_01_AmountRefundForOneWayTripLeadSuccessfully()
+            expect(isRefundSuccessful).toBeTruthy()
+            console.log("\n'Hourly Trip' Lead Refund Successfully")
+
+            const isAssigningFailed = await test_Dispatch.test_02_DriverAssigningFailedForOneWayTrip(order_id)
+            expect(isAssigningFailed).toBeTruthy()
+            console.log("\nDriver is not Assigned to 'Hourly Trip'")
+
+            const isAssigningSuccessful = await test_Dispatch.test_01_DriverAssignedToOneWayTripLeadSuccessfully(order_id)
+            expect(isAssigningSuccessful).toBeTruthy()
+            console.log("\nDriver Assigned to the 'Hourly Trip' Successfully")
         } catch (e) {
-            console.log("Quote is not Sent/ Updated for 'Hourly Trip'... Please try Again -", e)
+            console.log("Quote is not Sent/ Updated/ Paid/ Refunded/ Driver Dispatched for 'Hourly Trip'... Please try Again -", e)
             throw e
         }
     })
@@ -625,7 +754,7 @@ test.describe('ReservationFrom', () => {
     test('test_014_HourlyTripCreationFailed', async ({page}) => {
         try {
             const generateQuote = new ReservationFormPage(page)
-            await generateQuote.switchToReservationIframe()
+            // await generateQuote.switchToReservationIframe()
             await generateQuote.selectServiceType(5)
             await generateQuote.selectTripDuration(8)
             await generateQuote.enterPickupAddress3("45")

@@ -23,7 +23,7 @@ test.describe('Affiliate Creation Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await affiliate.clickSettingBtn();
-        await affiliate.clickManageAffiliatePanelBtn();
+        await affiliate.clickCardByIndex(11);
         await affiliate.clickAddAffiliateCompanyBtn();
         await affiliate.enterCompanyName("Sultan Limo");
         await affiliate.enterPhoneNumber("3254618445646");
@@ -55,6 +55,21 @@ test.describe('Affiliate Creation Tests', () => {
         await affiliate.clickSaveChangesBtn()
         await affiliate.validateErrors();
 
-        console.log("\n Affiliate Company not created, validation errors shown.");
+        console.log("\n Affiliate Company not created, validation errors shown");
     });
+
+    test('test_03_AffiliateCompanyDeletion', async ({page}) => {
+        const affiliate = new AffiliateCompanyPanelPage(page);
+        const login_helper = new LoginHelper(page);
+        const loginPage = await login_helper.perform_login();
+        await affiliate.clickSettingBtn();
+        await affiliate.clickManageAffiliatePanelBtn();
+        await affiliate.enterAffiliateInSearchField("Sultan Limo");
+        await affiliate.clickDeleteIcon();
+        await affiliate.clickDeleteAffiliateBtn();
+
+        console.log("\n Affiliate Company Deleted Successfully");
+    });
+
+
 });
