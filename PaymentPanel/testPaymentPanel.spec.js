@@ -4,13 +4,13 @@ import LoginHelper from "../LoginPage/LoginHelper";
 
 const baseURL = "https://test-admin-panel-git-staging-clever-coders-llc.vercel.app/";
 
-test.use({
-    headless: false,
-    viewport: null,
-    launchOptions: {
-        args: ['--start-maximized'],
-    },
-});
+// test.use({
+//     headless: false,
+//     viewport: null,
+//     launchOptions: {
+//         args: ['--start-maximized'],
+//     },
+// });
 
 
 test.describe('Payment Panel Page Tests', () => {
