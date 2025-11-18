@@ -4,13 +4,13 @@ import LoginHelper from "../LoginPage/LoginHelper";
 
 const baseURL = "https://test-admin-panel-git-staging-clever-coders-llc.vercel.app/";
 
-// test.use({
-//     headless: false,
-//     viewport: null,
-//     launchOptions: {
-//         args: ['--start-maximized'],
-//     },
-// });
+test.use({
+    headless: false,
+    viewport: null,
+    launchOptions: {
+        args: ['--start-maximized'],
+    },
+});
 
 test.describe('Affiliate Creation Tests', () => {
     test.beforeEach(async ({page}) => {
@@ -67,7 +67,6 @@ test.describe('Affiliate Creation Tests', () => {
         await affiliate.enterAffiliateInSearchField("Sultan Limo");
         await affiliate.clickDeleteIcon();
         await affiliate.clickDeleteAffiliateBtn();
-
         console.log("\n Affiliate Company Deleted Successfully");
     });
 

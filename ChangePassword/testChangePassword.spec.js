@@ -13,7 +13,7 @@ const baseURL = "https://test-admin-panel-git-staging-clever-coders-llc.vercel.a
 // });
 
 
-test.describe('Chane Password Page Tests', () => {
+test.describe('Change Password Page Tests', () => {
     test.beforeEach(async ({page}) => {
         await page.goto(baseURL);
     });

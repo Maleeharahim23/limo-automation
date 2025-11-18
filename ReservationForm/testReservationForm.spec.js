@@ -10,13 +10,13 @@ const BASE_URL = "https://main-reservation-form.vercel.app/" //New Production Li
 const ADMIN_URL = "https://test-admin-panel-git-staging-clever-coders-llc.vercel.app/" //Admin Panel
 // const ADMIN_URL = "https://production-admin-panel-two.vercel.app/" //Production Link
 
-// test.use({
-//     headless: false,
-//     viewport: null,
-//     launchOptions: {
-//         args: ['--start-maximized'],
-//     },
-// });
+test.use({
+    headless: false,
+    viewport: null,
+    launchOptions: {
+        args: ['--start-maximized'],
+    },
+});
 
 test.describe('Reservation From', () => {
     test.beforeEach(async ({page}) => {
@@ -367,7 +367,7 @@ test.describe('Reservation From', () => {
             await generateQuote.selectReturnPickupAirport(2)
             await generateQuote.clickUseSameStopsForLeg2CheckBox()
             await generateQuote.clickStopBtn3()
-            await generateQuote.enterStopAddress3("58")
+            await generateQuote.enterStopAddress3("43")
             await generateQuote.enterName("Tester")
             await generateQuote.enterEmail("maleeha.bhatti@theclevercoders.com")
             await generateQuote.enterPhoneNumber("3465727420")

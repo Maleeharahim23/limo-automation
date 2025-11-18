@@ -159,6 +159,7 @@ export class AffiliateCompanyPanelPage {
     async clickDeleteAffiliateBtn() {
         const btn = this.page.locator(`xpath=${this.deleteAffiliateBtnXPath}`);
         await btn.click();
+        await this.page.waitForTimeout(3000);
     }
 
 }
