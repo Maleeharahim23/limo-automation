@@ -23,6 +23,7 @@ test.describe('Additional Charges Page Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await additionalCharges.clickSettingBtn();
+        await additionalCharges.clickPricingFilterBtn();
         await additionalCharges.clickManageAdditionalChargesBtn();
         await additionalCharges.clickDeleteIconBtn();
         await additionalCharges.enterPaymentLabelInput("GST");

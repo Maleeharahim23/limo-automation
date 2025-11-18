@@ -5,13 +5,20 @@ export class DiscountsPage {
     constructor(page) {
         this.page = page;
         this.settingBtnXPath = '/html/body/main/div[1]/header/nav/div/div[2]/a[5]'
-        this.manageDiscountsBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[5]/div[2]'
+        this.pricingFilterBtnXPath = '/html/body/main/div[1]/div/div/div/div[1]/div[2]/button[4]'
+        this.manageDiscountsBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[2]/div[2]/div[2]'
         this.discountPercentageID = 'discount'
         this.setDiscountBtnXPath = '/html/body/main/div[1]/div/div[2]/div/div/div/form/div/button'
     }
 
     async clickSettingBtn() {
         const btn1 = this.page.locator(`xpath=${this.settingBtnXPath}`);
+        await btn1.waitFor({state: 'visible'});
+        await btn1.click();
+    }
+
+    async clickPricingFilterBtn() {
+        const btn1 = this.page.locator(`xpath=${this.pricingFilterBtnXPath}`);
         await btn1.waitFor({state: 'visible'});
         await btn1.click();
     }

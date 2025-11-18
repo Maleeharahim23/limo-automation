@@ -5,7 +5,8 @@ export class ManageCompanyDetailsPanelPage {
     constructor(page) {
         this.page = page;
         this.settingBtnXPath = '/html/body/main/div[1]/header/nav/div/div[2]/a[5]'
-        this.manageCompanyDetailsBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[1]'
+        this.accountFilterBtnXPath = '/html/body/main/div[1]/div/div/div/div[1]/div[2]/button[2]'
+        this.manageCompanyDetailsBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[1]/div[2]/div[2]'
         this.companyPhoneNumberName = 'company-phone'
         this.ownerPhoneNumberName = 'owner-phone'
         this.saveChangesBtnXPath = '/html/body/main/div[1]/div/div[2]/form/button'
@@ -15,6 +16,12 @@ export class ManageCompanyDetailsPanelPage {
 
     async clickSettingBtn() {
         const btn1 = this.page.locator(`xpath=${this.settingBtnXPath}`);
+        await btn1.waitFor({state: 'visible'});
+        await btn1.click();
+    }
+
+    async clickAccountFilterBtn() {
+        const btn1 = this.page.locator(`xpath=${this.accountFilterBtnXPath}`);
         await btn1.waitFor({state: 'visible'});
         await btn1.click();
     }

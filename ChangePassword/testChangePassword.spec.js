@@ -23,6 +23,7 @@ test.describe('Change Password Page Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await changePassword.clickSettingBtn();
+        await changePassword.clickAccountFilterBtn();
         await changePassword.clickManageChangePasswordBtn();
         await changePassword.enterOldPassword("Admin@123");
         await changePassword.clickUnhideBtnForOldPass();
@@ -40,6 +41,7 @@ test.describe('Change Password Page Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await changePassword.clickSettingBtn();
+        await changePassword.clickAccountFilterBtn();
         await changePassword.clickManageChangePasswordBtn();
         await changePassword.enterOldPassword("Admin@13");
         await changePassword.clickUnhideBtnForOldPass();
@@ -57,6 +59,7 @@ test.describe('Change Password Page Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await changePassword.clickSettingBtn();
+        await changePassword.clickAccountFilterBtn();
         await changePassword.clickManageChangePasswordBtn();
         await changePassword.enterOldPassword("Admin@123");
         await changePassword.clickUnhideBtnForOldPass();

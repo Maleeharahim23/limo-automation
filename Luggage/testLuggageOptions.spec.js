@@ -23,6 +23,7 @@ test.describe('Luggage Options Page Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await luggageOptionsPage.clickSettingBtn();
+        await luggageOptionsPage.clickConfigurationFilterBtn();
         await luggageOptionsPage.clickManageLuggageOptionsBtn();
         await luggageOptionsPage.clickLuggageInputToggleBtn();
         await luggageOptionsPage.clickLuggageInputToggleBtn();

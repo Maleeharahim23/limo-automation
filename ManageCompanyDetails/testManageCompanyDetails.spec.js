@@ -22,6 +22,7 @@ test.describe('Manage Company Details Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await companyPanel.clickSettingBtn();
+        await companyPanel.clickAccountFilterBtn();
         await companyPanel.clickManageCompanyDetailsBtn();
         // await companyPanel.enterPakCompanyPhoneNumber("3049602007");
         await companyPanel.enterCompanyPhoneNumber("3104248341");
@@ -36,6 +37,7 @@ test.describe('Manage Company Details Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await companyPanel.clickSettingBtn();
+        await companyPanel.clickAccountFilterBtn();
         await companyPanel.clickManageCompanyDetailsBtn();
         await companyPanel.clearCompanyPhoneNumber();
         await companyPanel.clearOwnerPhoneNumber();

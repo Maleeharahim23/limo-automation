@@ -5,7 +5,8 @@ export class PaymentPanelPage {
     constructor(page) {
         this.page = page;
         this.settingBtnXPath = '/html/body/main/div[1]/header/nav/div/div[2]/a[5]'
-        this.managePaymentPanelBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[8]/div[2]'
+        this.pricingFilterBtnXPath = '/html/body/main/div[1]/div/div/div/div[1]/div[2]/button[4]'
+        this.managePaymentPanelBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[3]/div[2]/div[2]'
         this.showTipBoxToggleBtnXPath = '/html/body/main/div[1]/div/div[2]/div/div[2]/div/div[3]/label'
         this.showMeetAndGreetBoxToggleBtnXPath = '/html/body/main/div[1]/div/div[2]/div/div[2]/div/div[2]/div[1]/label'
         this.manageMeetAndGreetTabBtnXPath = '/html/body/main/div[1]/div/div[2]/div/div[1]/div/button[2]'
@@ -15,6 +16,12 @@ export class PaymentPanelPage {
 
     async clickSettingBtn() {
         const btn1 = this.page.locator(`xpath=${this.settingBtnXPath}`);
+        await btn1.waitFor({state: 'visible'});
+        await btn1.click();
+    }
+
+    async clickPricingFilterBtn() {
+        const btn1 = this.page.locator(`xpath=${this.pricingFilterBtnXPath}`);
         await btn1.waitFor({state: 'visible'});
         await btn1.click();
     }

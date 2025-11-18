@@ -23,7 +23,8 @@ test.describe('Affiliate Creation Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await affiliate.clickSettingBtn();
-        await affiliate.clickCardByIndex(11);
+        await affiliate.clickOperationFilterBtn();
+        await affiliate.clickManageAffiliatePanelBtn();
         await affiliate.clickAddAffiliateCompanyBtn();
         await affiliate.enterCompanyName("Sultan Limo");
         await affiliate.enterPhoneNumber("3254618445646");
@@ -47,6 +48,7 @@ test.describe('Affiliate Creation Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await affiliate.clickSettingBtn();
+        await affiliate.clickOperationFilterBtn();
         await affiliate.clickManageAffiliatePanelBtn();
         await affiliate.clickAddAffiliateCompanyBtn();
         await affiliate.enterCompanyName("");
@@ -63,6 +65,7 @@ test.describe('Affiliate Creation Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await affiliate.clickSettingBtn();
+        await affiliate.clickOperationFilterBtn();
         await affiliate.clickManageAffiliatePanelBtn();
         await affiliate.enterAffiliateInSearchField("Sultan Limo");
         await affiliate.clickDeleteIcon();

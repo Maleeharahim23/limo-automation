@@ -5,7 +5,8 @@ export class AffiliateCompanyPanelPage {
     constructor(page) {
         this.page = page;
         this.settingBtnXPath = '/html/body/main/div[1]/header/nav/div/div[2]/a[5]'
-        this.manageAffiliatePanelBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[11]/div[2]'
+        this.operationFilterBtnXPath = '/html/body/main/div[1]/div/div/div/div[1]/div[2]/button[5]'
+        this.manageAffiliatePanelBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[2]/div[2]/div[2]'
         this.addAffiliatedCompanyBtnXPath = '/html/body/main/div[1]/div/div/div[2]/button'
         this.companyNameXPath = '/html/body/main/div[1]/div/div/div[4]/div[2]/div[2]/div[1]/div[1]/div/input'
         this.phoneNumberID = 'phone'
@@ -30,6 +31,12 @@ export class AffiliateCompanyPanelPage {
 
     async clickSettingBtn() {
         const btn1 = this.page.locator(`xpath=${this.settingBtnXPath}`);
+        await btn1.waitFor({state: 'visible'});
+        await btn1.click();
+    }
+
+    async clickOperationFilterBtn() {
+        const btn1 = this.page.locator(`xpath=${this.operationFilterBtnXPath}`);
         await btn1.waitFor({state: 'visible'});
         await btn1.click();
     }

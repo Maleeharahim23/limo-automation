@@ -24,6 +24,7 @@ test.describe('Driver Creation Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await driver.clickSettingBtn();
+        await driver.clickOperationFilterBtn();
         await driver.clickManageDriverPanelBtn();
         await driver.clickAddDriverBtn();
         await driver.enterDriverName("James");
@@ -45,6 +46,7 @@ test.describe('Driver Creation Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage  = await login_helper.perform_login();
         await driver.clickSettingBtn();
+        await driver.clickOperationFilterBtn();
         await driver.clickManageDriverPanelBtn();
         await driver.clickAddDriverBtn();
         await driver.enterDriverName("");
@@ -61,6 +63,7 @@ test.describe('Driver Creation Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await driver.clickSettingBtn();
+        await driver.clickOperationFilterBtn();
         await driver.clickManageDriverPanelBtn();
         await driver.enterDriverInSearchField("James");
         await driver.clickDeleteIcon();

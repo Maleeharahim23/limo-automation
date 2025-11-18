@@ -23,6 +23,7 @@ test.describe('Minimum Hours Page Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await minimumHoursPage.clickSettingBtn();
+        await minimumHoursPage.clickConfigurationFilterBtn();
         await minimumHoursPage.clickManageMinimumHoursBtn();
         await minimumHoursPage.enterMinimumHoursInput("4","0");
         await minimumHoursPage.enterMinimumHoursInput("9","1");

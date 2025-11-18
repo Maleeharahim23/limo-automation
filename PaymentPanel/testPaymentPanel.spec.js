@@ -23,6 +23,7 @@ test.describe('Payment Panel Page Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await paymentPanelPage.clickSettingBtn();
+        await paymentPanelPage.clickPricingFilterBtn();
         await paymentPanelPage.clickManagePaymentPanelBtn();
         await paymentPanelPage.clickShowTipBoxToggleBtn();
         // await paymentPanelPage.clickShowTipBoxToggleBtn();

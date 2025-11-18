@@ -5,7 +5,9 @@ export class DriverPanelPage {
     constructor(page) {
         this.page = page;
         this.settingBtnXPath = '/html/body/main/div[1]/header/nav/div/div[2]/a[5]'
-        this.manageDriverPanelBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[11]'
+        this.operationFilterBtnXPath = '/html/body/main/div[1]/div/div/div/div[1]/div[2]/button[5]'
+        this.manageDriverPanelBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[3]/div[2]/div[2]'
+        // this.manageDriverPanelBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[2]/div[2]/div[2]'
         this.addDriverdBtnXPath = '/html/body/main/div[1]/div/div/div[2]/button'
         this.driverNameXPath = '/html/body/main/div[1]/div/div/div[4]/div/div[2]/div[1]/div[1]/div/input'
         this.phoneNumberID = 'phone'
@@ -28,6 +30,12 @@ export class DriverPanelPage {
 
     async clickSettingBtn() {
         const btn1 = this.page.locator(`xpath=${this.settingBtnXPath}`);
+        await btn1.waitFor({state: 'visible'});
+        await btn1.click();
+    }
+
+    async clickOperationFilterBtn() {
+        const btn1 = this.page.locator(`xpath=${this.operationFilterBtnXPath}`);
         await btn1.waitFor({state: 'visible'});
         await btn1.click();
     }

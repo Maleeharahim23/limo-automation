@@ -23,6 +23,7 @@ test.describe('Discounts Page Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await discountsPage.clickSettingBtn();
+        await discountsPage.clickPricingFilterBtn();
         await discountsPage.clickManageDiscountsBtn();
         await discountsPage.enterDiscountPercentageInput("10");
         await discountsPage.clickSetDiscountBtn();

@@ -5,23 +5,25 @@ export class AdditionalChargesPage {
     constructor(page) {
         this.page = page;
         this.settingBtnXPath = '/html/body/main/div[1]/header/nav/div/div[2]/a[5]'
-        this.manageAdditionalChargesBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[4]/div[2]'
+        this.pricingFilterBtnXPath = '/html/body/main/div[1]/div/div/div/div[1]/div[2]/button[4]'
+        this.manageAdditionalChargesBtnXPath = '/html/body/main/div[1]/div/div/div/div[2]/div[1]/div[2]/div[2]'
         this.paymentLabelInputID = 'paymentLabel'
         this.amountInputID = 'amount'
         this.typeXPath = '/html/body/main/div[1]/div/div[2]/div/div/div/div[1]/form/div/div[3]/select'
         this.taxCheckboxID = 'isTax'
         this.gratuityCheckboxID = 'isGratuity'
-        this.gstAmount = '/html/body/main/div[1]/div/div[2]/div/div/div/div[1]/div[2]/ul/li[1]/div/div[2]/input'
-        this.unhideBtnForOldPass = '/html/body/main/div[1]/div/div[2]/form/div[1]/div/div[2]/div/button'
-        this.unhideBtnForNewPass = '/html/body/main/div[1]/div/div[2]/form/div[2]/div/div[2]/div/button'
-        this.unhideBtnForConfirmPass = '/html/body/main/div[1]/div/div[2]/form/div[3]/div/div[2]/div/button'
-        this.saveChangesBtnXPath = '/html/body/main/div[1]/div/div[2]/form/button'
         this.addChargeBtnXPath = '/html/body/main/div[1]/div/div[2]/div/div/div/div[1]/form/button'
         this.deleteIconBtnXPath = '/html/body/main/div[1]/div/div[2]/div/div/div/div[1]/div[2]/ul/li[1]/div/div[4]/button'
     }
 
     async clickSettingBtn() {
         const btn1 = this.page.locator(`xpath=${this.settingBtnXPath}`);
+        await btn1.waitFor({state: 'visible'});
+        await btn1.click();
+    }
+
+    async clickPricingFilterBtn() {
+        const btn1 = this.page.locator(`xpath=${this.pricingFilterBtnXPath}`);
         await btn1.waitFor({state: 'visible'});
         await btn1.click();
     }
@@ -65,6 +67,11 @@ export class AdditionalChargesPage {
 
     async clickTaxCheckbox() {
         const btn2 = this.page.locator(`id=${this.taxCheckboxID}`);
+        await btn2.click();
+    }
+
+    async clickGratuityCheckbox() {
+        const btn2 = this.page.locator(`id=${this.gratuityCheckboxID}`);
         await btn2.click();
     }
 l

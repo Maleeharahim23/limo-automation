@@ -23,6 +23,7 @@ test.describe('Default State Page Tests', () => {
         const login_helper = new LoginHelper(page);
         const loginPage = await login_helper.perform_login();
         await defaultState.clickSettingBtn();
+        await defaultState.clickConfigurationFilterBtn();
         await defaultState.clickManageDefaultStateBtn();
         await defaultState.selectStateDropdown(1);
         await defaultState.clickSaveChangesBtn();
