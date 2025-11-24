@@ -2,7 +2,6 @@ class SendQuotes {
     constructor(page) {
         this.page = page;
         this.mainPriceID = 'price'
-        this.enteredMainPrice = 0
         this.clientNoteInputID = "note"
         this.noteToggleBtn = "/html/body/main/div[1]/div/div/div[4]/div/div[3]/label/div"
         this.password = "/html/body/main/div[2]/div/div/form/div[2]/div/input"
@@ -173,6 +172,7 @@ class SendQuotes {
 
     async clickStatusBtn2() {
         const btn = this.page.locator(`xpath=${this.statusBtn2XPath}`);
+        await btn.waitFor({ state: 'visible', timeout: 2000 });
         await btn.click();
     }
 

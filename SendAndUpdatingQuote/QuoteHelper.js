@@ -67,7 +67,7 @@ class QuoteHelper {
         await this.sendQuote.enterClientNoteInput("Note to Client");
         await this.sendQuote.clickSubmitButton();
         const isQuoteCreated = await this.sendQuote.checkEmailUpdateToastTextForSingleTrips();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForTimeout(4000);
         return isQuoteCreated;
     }
 

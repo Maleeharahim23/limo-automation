@@ -4,6 +4,7 @@ const ReservationFormPage = require('./pathsOfReservationForm')
 const QuoteHelper = require('../SendAndUpdatingQuote/QuoteHelper')
 const DriverDispatch = require('../Dispatching/testDispatch')
 const RefundLeads = require('../RefundAmount/testRefund')
+const AddChargesOfLeads = require('../AddExtraChargeAfterPayment/testAddCharges')
 
 // const BASE_URL = "https://limo-test-app-frontend.vercel.app/" //Old Production Link
 const BASE_URL = "https://main-reservation-form.vercel.app/" //New Production Link
@@ -64,6 +65,7 @@ test.describe('Reservation From', () => {
             const quote_helper = new QuoteHelper(page)
             const test_Dispatch = new DriverDispatch(page)
             const test_Refund = new RefundLeads(page)
+            const test_ExtraCharges = new AddChargesOfLeads(page)
 
             const loginPage = await login_helper.perform_login()
             await quote_helper.searchLead(order_id)
@@ -79,6 +81,13 @@ test.describe('Reservation From', () => {
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
             console.log("\n'One Way Trip To The Airport' Lead Marked as Paid Successfully")
+
+            await test_ExtraCharges.test_01_ExtraChargesOfPaidLeadForOneWayTripsAdditionFailed()
+            console.log("\nExtra Charges for 'One Way Trip To The Airport' are not Added")
+
+            const isChargeAdded = await test_ExtraCharges.test_02_ExtraChargesOfPaidLeadForOneWayTripsAddedSuccessfully()
+            expect(isChargeAdded).toBeTruthy()
+            console.log("\nExtra Charges for 'One Way Trip To The Airport' are Added")
 
             const isRefundFailed = await test_Refund.test_02_AmountRefundForOneWayTripLeadFailed()
             expect(isRefundFailed).toBeTruthy()
@@ -172,6 +181,7 @@ test.describe('Reservation From', () => {
             const quote_helper = new QuoteHelper(page)
             const test_Dispatch = new DriverDispatch(page)
             const test_Refund = new RefundLeads(page)
+            const test_ExtraCharges = new AddChargesOfLeads(page)
             await quote_helper.searchLead(order_id)
 
             const isQuoteCreated = await quote_helper.test_01_createQuoteForSingleTrips()
@@ -185,6 +195,13 @@ test.describe('Reservation From', () => {
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
             console.log("\n'One Way Trip From The Airport' Lead Marked as Paid Successfully")
+
+            await test_ExtraCharges.test_01_ExtraChargesOfPaidLeadForOneWayTripsAdditionFailed()
+            console.log("\nExtra Charges for 'One Way Trip To The Airport' are not Added")
+
+            const isChargeAdded = await test_ExtraCharges.test_02_ExtraChargesOfPaidLeadForOneWayTripsAddedSuccessfully()
+            expect(isChargeAdded).toBeTruthy()
+            console.log("\nExtra Charges for 'One Way Trip To The Airport' are Added")
 
             const isRefundFailed = await test_Refund.test_02_AmountRefundForOneWayTripLeadFailed()
             expect(isRefundFailed).toBeTruthy()
@@ -233,21 +250,16 @@ test.describe('Reservation From', () => {
 
     test('test_05_OneWayTripNotInvolvingAnAirportCreationSuccessful', async ({page}) => {
         let order_id = null
-
         try {
             const generateQuote = new ReservationFormPage(page)
             // await generateQuote.switchToReservationIframe()
             await generateQuote.selectServiceType(3)
             await generateQuote.enterPickupAddress("38")
-            // await generateQuote.enterPickupCity("Victorville")
-            // await generateQuote.selectPickupState(2)
             await generateQuote.enterDropOffAddress5("56")
-            // await generateQuote.selectDropOffState(2)
             await generateQuote.clickNextBtn1()
             await generateQuote.selectCar()
             await generateQuote.selectPickupDate()
             await generateQuote.enterPickUpTime("22:30")
-            // await generateQuote.enterPickupAddress("34")
             await generateQuote.clickStopBtn1()
             await generateQuote.enterStopAddress1("38")
             await generateQuote.enterDropOffAddress2("46")
@@ -257,7 +269,7 @@ test.describe('Reservation From', () => {
             await generateQuote.enterName("Tester")
             await generateQuote.enterEmail("maleeha.bhatti@theclevercoders.com")
             await generateQuote.enterPhoneNumber("3465727420")
-            // await generateQuote.enterPakPhoneNumber("3185618299") 
+            // await generateQuote.enterPakPhoneNumber("3185618299")
             await generateQuote.enterAdditionalNotes("Additional Notes")
             await generateQuote.clickConsentSmsCheckbox()
             await generateQuote.clickNextBtn2()
@@ -278,6 +290,7 @@ test.describe('Reservation From', () => {
             const quote_helper = new QuoteHelper(page)
             const test_Dispatch = new DriverDispatch(page)
             const test_Refund = new RefundLeads(page)
+            const test_ExtraCharges = new AddChargesOfLeads(page)
             await quote_helper.searchLead(order_id)
 
             const isQuoteCreated = await quote_helper.test_01_createQuoteForSingleTrips()
@@ -291,6 +304,13 @@ test.describe('Reservation From', () => {
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
             console.log("\n'One Way Trip Not Involving an Airport' Lead Marked as Paid Successfully")
+
+            await test_ExtraCharges.test_01_ExtraChargesOfPaidLeadForOneWayTripsAdditionFailed()
+            console.log("\nExtra Charges for 'One Way Trip Not Involving An Airport' are not Added")
+
+            const isChargeAdded = await test_ExtraCharges.test_02_ExtraChargesOfPaidLeadForOneWayTripsAddedSuccessfully()
+            expect(isChargeAdded).toBeTruthy()
+            console.log("\nExtra Charges for 'One Way Trip Not Involving An Airport' are Added")
 
             const isRefundFailed = await test_Refund.test_02_AmountRefundForOneWayTripLeadFailed()
             expect(isRefundFailed).toBeTruthy()
@@ -392,6 +412,7 @@ test.describe('Reservation From', () => {
             const quote_helper = new QuoteHelper(page)
             const test_Dispatch = new DriverDispatch(page)
             const test_Refund = new RefundLeads(page)
+            const test_ExtraCharges = new AddChargesOfLeads(page)
             await quote_helper.searchLead(order_id)
 
             const isQuoteCreated = await quote_helper.test_02_createQuoteForRoundTrips()
@@ -405,6 +426,13 @@ test.describe('Reservation From', () => {
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
             console.log("\n'Round Trip Involving an Airport for Leg 1' Lead Marked as Paid Successfully")
+
+            await test_ExtraCharges.test_03_ExtraChargesOfPaidLeadForRoundWayTripsAdditionFailed()
+            console.log("\nExtra Charges for 'Round Trip Involving an Airport for Leg 1 and Leg 2' are not Added")
+
+            const isChargeAdded = await test_ExtraCharges.test_04_ExtraChargesOfPaidLeadForRoundWayTripsAddedSuccessfully()
+            expect(isChargeAdded).toBeTruthy()
+            console.log("\nExtra Charges for 'Round Trip Involving an Airport for Leg 1 and Leg 2' are Added")
 
             const isRefundFailed = await test_Refund.test_04_AmountRefundForRoundTripLeadFailed()
             expect(isRefundFailed).toBeTruthy()
@@ -508,6 +536,7 @@ test.describe('Reservation From', () => {
             const quote_helper = new QuoteHelper(page)
             const test_Dispatch = new DriverDispatch(page)
             const test_Refund = new RefundLeads(page)
+            const test_ExtraCharges = new AddChargesOfLeads(page)
             await quote_helper.searchLead(order_id)
 
             const isQuoteCreated = await quote_helper.test_02_createQuoteForRoundTrips()
@@ -521,6 +550,13 @@ test.describe('Reservation From', () => {
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
             console.log("\n'Round Trip Involving an Airport for Leg 2' Lead Marked as Paid Successfully")
+
+            await test_ExtraCharges.test_03_ExtraChargesOfPaidLeadForRoundWayTripsAdditionFailed()
+            console.log("\nExtra Charges for 'Round Trip Involving an Airport for Leg 1 and Leg 2' are not Added")
+
+            const isChargeAdded = await test_ExtraCharges.test_04_ExtraChargesOfPaidLeadForRoundWayTripsAddedSuccessfully()
+            expect(isChargeAdded).toBeTruthy()
+            console.log("\nExtra Charges for 'Round Trip Involving an Airport for Leg 1 and Leg 2' are Added")
 
             const isRefundFailed = await test_Refund.test_04_AmountRefundForRoundTripLeadFailed()
             expect(isRefundFailed).toBeTruthy()
@@ -617,6 +653,7 @@ test.describe('Reservation From', () => {
             const quote_helper = new QuoteHelper(page)
             const test_Dispatch = new DriverDispatch(page)
             const test_Refund = new RefundLeads(page)
+            const test_ExtraCharges = new AddChargesOfLeads(page)
             await quote_helper.searchLead(order_id)
 
             const isQuoteCreated = await quote_helper.test_02_createQuoteForRoundTrips()
@@ -630,6 +667,13 @@ test.describe('Reservation From', () => {
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
             console.log("\n'Round Trip Not Involving an Airport' Lead Marked as Paid Successfully")
+
+            await test_ExtraCharges.test_03_ExtraChargesOfPaidLeadForRoundWayTripsAdditionFailed()
+            console.log("\nExtra Charges for 'Round Trip Not Involving an Airport for Leg 1 and Leg 2' are not Added")
+
+            const isChargeAdded = await test_ExtraCharges.test_04_ExtraChargesOfPaidLeadForRoundWayTripsAddedSuccessfully()
+            expect(isChargeAdded).toBeTruthy()
+            console.log("\nExtra Charges for 'Round Trip Not Involving an Airport for Leg 1 and Leg 2' are Added")
 
             const isRefundFailed = await test_Refund.test_04_AmountRefundForRoundTripLeadFailed()
             expect(isRefundFailed).toBeTruthy()
@@ -677,7 +721,6 @@ test.describe('Reservation From', () => {
 
     test('test_013_HourlyTripCreationSuccessful', async ({page}) => {
         let order_id = null
-
         try {
             const generateQuote = new ReservationFormPage(page)
             // await generateQuote.switchToReservationIframe()
@@ -716,6 +759,7 @@ test.describe('Reservation From', () => {
             const quote_helper = new QuoteHelper(page)
             const test_Dispatch = new DriverDispatch(page)
             const test_Refund = new RefundLeads(page)
+            const test_ExtraCharges = new AddChargesOfLeads(page)
             await quote_helper.searchLead(order_id)
 
             const isQuoteCreated = await quote_helper.test_01_createQuoteForSingleTrips()
@@ -729,6 +773,13 @@ test.describe('Reservation From', () => {
             const isQuoteMarkedPaid = await quote_helper.test_04_markLeadAsPaid()
             expect(isQuoteMarkedPaid).toBeTruthy()
             console.log("\n'Hourly Trip' Lead Marked as Paid Successfully")
+
+            await test_ExtraCharges.test_01_ExtraChargesOfPaidLeadForOneWayTripsAdditionFailed()
+            console.log("\nExtra Charges for 'Hourly Trip' are not Added")
+
+            const isChargeAdded = await test_ExtraCharges.test_02_ExtraChargesOfPaidLeadForOneWayTripsAddedSuccessfully()
+            expect(isChargeAdded).toBeTruthy()
+            console.log("\nExtra Charges for 'Hourly Trip' are Added")
 
             const isRefundFailed = await test_Refund.test_02_AmountRefundForOneWayTripLeadFailed()
             expect(isRefundFailed).toBeTruthy()

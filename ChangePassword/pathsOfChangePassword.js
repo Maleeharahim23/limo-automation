@@ -93,7 +93,6 @@ export class ChangePasswordPage {
 
     async verifyPasswordsDoNotMatchError() {
         const errorMessage = this.page.locator('span.break-words', { hasText: 'Passwords do not match' });
-
         await expect(errorMessage).toBeVisible();
     }
 
