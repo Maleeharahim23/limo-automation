@@ -5,13 +5,13 @@ import {AffiliateCompanyPanelPage} from "../AffiliateCompany/pathsOfAffiliateCom
 
 const baseURL = "https://test-admin-panel-git-staging-clever-coders-llc.vercel.app/";
 
-test.use({
-    headless: false,
-    viewport: null,
-    launchOptions: {
-        args: ['--start-maximized'],
-    },
-});
+// test.use({
+//     headless: false,
+//     viewport: null,
+//     launchOptions: {
+//         args: ['--start-maximized'],
+//     },
+// });
 
 test.describe('Driver Creation Tests', () => {
     test.beforeEach(async ({page}) => {
